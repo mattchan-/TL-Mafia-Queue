@@ -1,0 +1,50 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        <%= @user.name %>
+      </h1>
+    </section>
+    <section>
+      <%= link_to 'Create New Game', new_game_path, class: "btn btn-primary" %>
+    </section>
+  </aside>
+</div>
+
+<div class="myGamesContainer">
+  
+  <table width="940">
+    <tr id="gameTableHeader">
+      <td width="5%" height="35">&nbsp</td>
+      <td width="5%" height="35">Category</td>
+      <td width="40%">Game Name</td>
+      <td width="20%">Host</td>
+      <td width="12%">Status</td>
+      <td width="18%">Last Update</td>
+    </tr>
+
+  <tr><td><b>Hosting:</b></td></tr>
+  <% @user.games.each do |game| %>
+      <%= render partial: 'games/listing',
+                 locals: { object: game, body: game.running ? '/pause' : '/run', path: run_game_path(game.id),
+                           action: :post, confirmMessage: false } %>
+  <% end %>
+
+  <tr><td colspan="6"><b><hr>Playing:</b></td></tr>
+  <% @user.votes.each do |vote| %>
+      <%= render partial: 'games/listing',
+                 locals: { object: vote.game, body: "/out", path: vote_path(vote.id),
+                           action: :delete, confirmMessage: "Are you sure?" } %>
+  <% end %>
+
+  <tr><td colspan="6"><b><hr>Other Games:</b></td></tr>
+  <% Game.all.each do |game| %>
+    <% if game.votes.find_by_user_id(current_user).nil? && game.host != current_user %>
+      <%= render partial: 'games/listing',
+                   locals: { object: game, body: "/in", path: votes_path(game_id: game.id, user_id: current_user),
+                             action: :post, confirmMessage: false } %>
+    <% end %>
+  <% end %>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+<tr class=<%= object.running ? "running" : "pending" %>>
+  <td class="white"><%= link_to body, path, method: action, confirm: confirmMessage, class: "btn btn-small" if signed_in? %>
+  </td><td class="categoryTag"><%= object.category.tag %></td>
+  <td><%= link_to object.title, game_path(id: object.id) %></td>
+  <td><%= object.host.name %></td>
+  <td><%= object.signups.to_s + '/' + object.maximum_players.to_s %></td>
+  <td><%= object.updated_at.strftime("%H:%M %b %d %Y") %></td>
+</tr>

@@ -1,0 +1,85 @@
+// Place all the styles related to the Games controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.playerList {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-color: #999;
+  padding: 5px;
+}
+
+.gamesContainer {
+  border-top: 2px solid;
+  border-color: #999;
+}
+
+.menu {
+  section {
+    padding: 10px 0;
+    &:first-child {
+      border: 0;
+      padding-top: 0;
+    }
+    h1 {
+      font-size: 1.6em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+    }
+    h3 {
+      font-size: 1.2em;
+      text-align: left;
+      letter-spacing: -1px;
+      margin-bottom: 3px;
+      vertical-align: bottom;
+    }
+  }
+}
+
+#gameTableHeader {
+  font-weight: bold;
+}
+
+.section {
+  font-weight: bold;
+}
+
+.gameShow {
+  border: 1px solid;
+  border-color: #999;
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.hostInfo {
+  width: 100%;
+  #name {
+    width: 60%;
+    text-align: left;
+    font-size: 1.6em;
+    font-weight: bold;
+  }
+  #timeStamp {
+    text-align: right;
+    font-size: 1.2em;
+  }
+}
+
+.running {
+  background-color: #008000;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=5);
+}
+
+.pending {
+  background-color: #FFF68F;
+  opacity: 0.5;
+  -moz-opacity: 0.5;
+  filter:alpha(opacity=5);
+}
+
+.white {
+  background-color: #FFF;
+}

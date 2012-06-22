@@ -1,0 +1,19 @@
+<div class="row">
+  <aside class="span4">
+    <section>
+      <h1>
+        All Games
+      </h1>
+    </section>
+    <section>
+      <%= link_to 'Create New Game', new_game_path, class: "btn btn-primary" if signed_in? %>
+    </section>
+  </aside>
+  <aside class="span8">
+    <section>
+      <h3>
+        Sort by:
+      </h3>
+    </section>
+  </aside>
+</div>

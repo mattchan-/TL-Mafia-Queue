@@ -1,0 +1,40 @@
+<% provide(:title, @game.title) %>
+
+<h1><%= @game.title %></h1>
+<div class="gameShow">
+  <table class="hostInfo">
+    <tr>
+      <td id="name"><%= @game.host.name %></td>
+      <td id="timestamp"><%= @game.created_at %></td>
+    </tr>
+  </table>
+  <p>Game Description:
+    <%= @game.description.bbcode_to_html.html_safe %>
+  </p>
+  <p>Category: <%= @game.category.name %>
+  <p>Player Cap: <%= @game.maximum_players %></p>
+</div>
+<div class="playerList">
+  <p class="section">Player List:</p>
+    <% @game.users.each_with_index do |user, index| %>
+      <%= index += 1 %>. <%= user.name %><br/>
+      <%= index + 1 if user == @game.users.last %>
+    <% end %>
+    <%= "1. " if @game.signups == 0 %>
+  <hr><%= @game.maximum_players %> of <%= @game.maximum_players %> players remaining.
+</div>
+
+<br/>
+
+<% if @game.host != current_user %>
+  <% if current_user.votes.find_by_game_id(@game.id).nil? %>
+    <%= link_to '/in', votes_path(game_id: @game.id, user_id: current_user), method: :post, class: "btn btn-primary" %>
+  <% else %>
+    <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-primary" %>
+  <% end %>
+<% else %>
+  <%= link_to 'Delete Game', game_path, method: :delete, class: "btn btn-primary" %>
+  <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
+  <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if !@game.running %>
+  <%= link_to 'Pause Game', run_game_path, method: :post, class: "btn btn-primary" if @game.running %>
+<% end %>
