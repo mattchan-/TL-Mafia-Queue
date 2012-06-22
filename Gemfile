@@ -8,8 +8,6 @@ gem 'bb-ruby', '0.9.5'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +24,11 @@ end
 group :development do
   gem 'rspec-rails', '2.10.0'
   gem 'annotate', '~> 2.4.1.beta'
+  gem 'sqlite3', '1.3.5'
+end
+
+group :production do
+  gem 'pg'
 end
 
 gem 'jquery-rails'

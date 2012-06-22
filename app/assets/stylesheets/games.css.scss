@@ -68,16 +68,11 @@
 
 .running {
   background-color: #008000;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=5);
+  color: #FFF;
 }
 
 .pending {
   background-color: #FFF68F;
-  opacity: 0.5;
-  -moz-opacity: 0.5;
-  filter:alpha(opacity=5);
 }
 
 .white {
