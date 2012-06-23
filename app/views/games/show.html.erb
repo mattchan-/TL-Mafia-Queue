@@ -26,15 +26,17 @@
 
 <br/>
 
-<% if @game.host != current_user %>
-  <% if current_user.votes.find_by_game_id(@game.id).nil? %>
-    <%= link_to '/in', votes_path(game_id: @game.id, user_id: current_user), method: :post, class: "btn btn-primary" %>
+<% if signed_in? %>
+  <% if @game.host != current_user %>
+    <% if current_user.votes.find_by_game_id(@game.id).nil? %>
+      <%= link_to '/in', votes_path(game_id: @game.id, user_id: current_user), method: :post, class: "btn btn-primary" %>
+    <% else %>
+      <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-primary" %>
+    <% end %>
   <% else %>
-    <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-primary" %>
+    <%= link_to 'Delete Game', game_path, method: :delete, class: "btn btn-primary" %>
+    <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
+    <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if !@game.running %>
+    <%= link_to 'Pause Game', run_game_path, method: :post, class: "btn btn-primary" if @game.running %>
   <% end %>
-<% else %>
-  <%= link_to 'Delete Game', game_path, method: :delete, class: "btn btn-primary" %>
-  <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
-  <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if !@game.running %>
-  <%= link_to 'Pause Game', run_game_path, method: :post, class: "btn btn-primary" if @game.running %>
 <% end %>

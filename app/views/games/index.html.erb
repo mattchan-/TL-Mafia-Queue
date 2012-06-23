@@ -1,30 +1,4 @@
 <% provide(:title, "All Games") %>
 
 <%= render 'index_menu' %>
-
-
-<div class="gamesContainer">
-  <table width="940">
-    <tr id="gameTableHeader">
-      <td width="5%" height="35">&nbsp</td>
-      <td width="5%" height="35">Category</td>
-      <td width="40%">Game Name</td>
-      <td width="20%">Host</td>
-      <td width="12%">Status</td>
-      <td width="18%">Last Update</td>
-    </tr>
-
-  <% sortedGameList = @games.sort_by { |option| [-option.updated_at.to_i, -option.signups] } %>
-  <% sortedGameList.each do |game| %>
-    <% if !signed_in? %>
-      <%= render partial: 'listing', locals: { object: game, body: false, path: false, action: false, confirmMessage: false } %>
-    <% elsif game.host == current_user %>
-      <%= render partial: 'listing', locals: { object: game, body: 'Delete', path: game_path(game.id), action: :delete, confirmMessage: "Are you sure?" } %>
-    <% elsif !game.votes.find_by_user_id(current_user.id).nil? %>
-      <%= render partial: 'listing', locals: { object: game, body: '/out', path: vote_path(id: game.votes.find_by_user_id(current_user).id), action: delete, confirmMessage: false } %>
-    <% else %>
-      <%= render partial: 'listing', locals: { object: game, body: '/in', path: votes_path(game_id: game.id, user_id: current_user), action: :post, confirmMessage: false } %>
-    <% end %>
-  <% end %>
-  </table>
-</div>
+<%= render 'index_content' %>

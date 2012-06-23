@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   has_many :games, foreign_key: "host_id"
-  has_many :votes
+  has_many :signups, through: :votes, class_name: "Game", source: :game # user.signups returns the array of games the user is signed up for
+  has_many :votes                                                       # user.votes returns the array of votes the player has cast
 
   private
   

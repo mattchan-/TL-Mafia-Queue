@@ -1,6 +1,6 @@
 class StaticPagesController < ApplicationController
   def home
-    @game = current_user.games.build if signed_in?
+    @games = Game.all
   end
 
   def about

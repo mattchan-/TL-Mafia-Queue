@@ -14,34 +14,7 @@
   border-color: #999;
 }
 
-.menu {
-  section {
-    padding: 10px 0;
-    &:first-child {
-      border: 0;
-      padding-top: 0;
-    }
-    h1 {
-      font-size: 1.6em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-    }
-    h3 {
-      font-size: 1.2em;
-      text-align: left;
-      letter-spacing: -1px;
-      margin-bottom: 3px;
-      vertical-align: bottom;
-    }
-  }
-}
-
 #gameTableHeader {
-  font-weight: bold;
-}
-
-.section {
   font-weight: bold;
 }
 
@@ -67,6 +40,14 @@
 }
 
 .running {
+  a {
+    color: #FFF;
+    text-decoration: none;
+  }
+  a:hover {
+    color: #EEE;
+    text-decoration: underline;
+  }
   background-color: #008000;
   color: #FFF;
 }
@@ -77,4 +58,34 @@
 
 .white {
   background-color: #FFF;
+  a, a:hover {
+    color: #000;
+    text-decoration: none;
+  }
+}
+
+div.menu {
+  float: left;
+  padding: 10px;
+  width: 100%;
+  h1 {
+    font-size: 2.2em;
+    text-align: left;
+    letter-spacing: -1px;
+    margin-bottom: 2px;
+  }
+  h3 {
+    font-size: 1.2em;
+    text-align: left;
+    letter-spacing: -1px;
+    margin-bottom: 2px;
+  }
+  hr {
+    margin: 10px 0px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+  }
+  td {
+    padding-right: 20px;
+  }
 }

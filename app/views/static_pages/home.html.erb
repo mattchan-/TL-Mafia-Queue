@@ -1,7 +1,10 @@
-<div class="center hero-unit">
-  <h1>TL Mafia Queue</h1>
+<% if !signed_in? %>
+  <div class="center hero-unit">
+    <%= link_to image_tag("mafia_banner.png"), 'http://www.teamliquid.net/forum/index.php?viewdays=0&show_part=31' %>
+    <br/>
+    <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
+    <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" %>
+  </div>
+<% end %>
 
-  <%= link_to "Sign up now!", signup_path, class: "btn btn-large btn-primary" %>
-  <%= link_to "Sign in", signin_path, class: "btn btn-large btn-primary" if !signed_in? %>
-</div>
-
+<%= render 'games/index_content' %>
