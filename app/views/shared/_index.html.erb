@@ -1,7 +1,7 @@
 <%= render 'shared/index_menu' %>
 
 <div class="game_index_container">
-  <table>
+  <table class="gameIndexTable">
     <%= render 'shared/index_header' %>
 
     <% sortedGameList = Game.all.sort_by { |option| [option.status_id, -option.signups, -option.updated_at.to_i] } %>

@@ -1,22 +1,22 @@
 <%= render 'shared/index_menu' %>
 
 <div class="game_index_container">
-  <table>
+  <table class="gameIndexTable">
     <%= render 'shared/index_header' %>
 
-    <tr><td><b>Hosting:</b></td></tr>
+    <tr class="breakmarker"><td colspan="6"><b><hr>Hosting:</b></td></tr>
     <% hosting = current_user.games.sort_by { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
     <% hosting.each do |game| %>
       <%= render 'shared/listing', game: game %>
     <% end %>
 
-    <tr><td colspan="6"><b><hr>Playing:</b></td></tr>
+    <tr class="breakmarker"><td colspan="6"><b><hr>Playing:</b></td></tr>
     <% playing = current_user.signups.sort_by { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
     <% playing.each do |game| %>
       <%= render 'shared/listing', game: game %>
     <% end %>
 
-    <tr><td colspan="6"><b><hr>Other Games:</b></td></tr>
+    <tr class="breakmarker"><td colspan="6"><b><hr>Other Games:</b></td></tr>
     <% otherGames = Game.all - current_user.games - current_user.signups %>
     <% otherGames.sort_by! { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
     <% otherGames.each do |game| %>

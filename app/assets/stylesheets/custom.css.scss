@@ -200,15 +200,6 @@ input, textarea, select, .uneditable-input {
 
 /* Game Index */
 
-.game_index_container {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-color: #999;
-  tr {
-    height: 30px;
-  }
-}
-
 div.menu {
   padding: 10px;
   width: 100%;
@@ -220,6 +211,21 @@ div.menu {
   td {
     padding-right: 20px;
   }
+}
+
+.game_index_container {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  border-color: #999;
+  tr {
+    height: 30px;
+  }
+}
+
+table.gameIndexTable {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 0px;
 }
 
 #gameTableHeader {
@@ -281,5 +287,11 @@ div.menu {
   a, a:hover {
     color: #000;
     text-decoration: none;
+  }
+}
+
+.breakmarker {
+  hr {
+    margin: 2px;
   }
 }
