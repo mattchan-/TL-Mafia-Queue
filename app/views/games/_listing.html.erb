@@ -1,4 +1,4 @@
-<tr class=<%= game.status.name %>>
+<tr class=<%= game.status_id == 1 ? 'Signups' : game.status.name %>>
   <% if signed_in? %> <!-- if signed in... -->
     <% if game.host == current_user %> <!-- if user is game host, show run/pause -->
       <td class="game_index_first_col"><%= link_to '/edit', edit_game_path(game.id), class: "btn btn-small" %></td>
@@ -17,6 +17,6 @@
   </td><td class="categoryTag"><%= game.category.tag %></td>
   <td><%= link_to game.title, game_path(id: game.id) %></td>
   <td><%= game.host.name %></td>
-  <td><%= formattedStatus = game.signups.to_s + '/' + game.maximum_players.to_s + ' ' + (game.status_id == 1 ? "Signups Open" : game.status.name) %></td>
+  <td><%= formattedStatus = game.signups.to_s + '/' + game.maximum_players.to_s + ' ' + game.status.name) %></td>
   <td><%= game.updated_at.strftime("%H:%M %b %d %Y") %></td>
 </tr>

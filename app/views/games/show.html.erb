@@ -2,16 +2,16 @@
 
 <h1><%= @game.title %></h1>
 
-<div class="hostButtons">
-  <% if signed_in? && @game.host == current_user %>
+<% if signed_in? && @game.host == current_user %>
+  <div class="hostButtons">
     <%= link_to 'Delete Game', game_path, method: :delete, confirm: "Are you sure?", class: "btn btn-primary" if @game.status_id == 1 %>
     <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
     <%= link_to 'Open Signups', change_status_game_path(status_id: 1), method: :post, class: "btn btn-primary" if @game.status_id == 3 %>
     <%= link_to 'Run Game', change_status_game_path(status_id: 2), method: :post, class: "btn btn-primary" if @game.status_id == 1 || @game.status_id == 3 %>
     <%= link_to 'Pause Game', change_status_game_path(status_id: 3), method: :post, class: "btn btn-primary" if @game.status_id == 2 %>
     <%= link_to 'Game Over', change_status_game_path(status_id: 4), method: :post, class: "btn btn-primary" if @game.status_id == 2 || @game.status_id == 3 %>
-  <% end %>
-</div>
+  </div>
+<% end %>
 
 <div class="gameInfo">
   <div class="hostInfo">
@@ -21,7 +21,7 @@
     <p><%= @game.description.bbcode_to_html_with_formatting.html_safe %></p>
     <hr>
     <p>Category: <%= @game.category.name %>
-    <p>Status: <%= @game.signups.to_s + '/' + @game.maximum_players.to_s %> <%= @game.status_id == 1 ? "Signups Open" : @game.status.name %></p>
+    <p>Status: <%= @game.signups.to_s + '/' + @game.maximum_players.to_s + ' ' + @game.status.name %></p>
     <div class="playerList">
       <h3>Player List:</h3>
       <br/>
