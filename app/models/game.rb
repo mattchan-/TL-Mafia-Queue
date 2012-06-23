@@ -15,7 +15,7 @@
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :description, :maximum_players, :running, :title, :signups, :category_id
+  attr_accessible :description, :maximum_players, :status_id, :title, :signups, :category_id
 
   validates :title, presence: true, length: { maximum: 50 },
                    uniqueness: { case_sensitive: false }
@@ -23,9 +23,11 @@ class Game < ActiveRecord::Base
   validates :description, presence: true
   validates :host_id, presence: true
   validates :category_id, presence: true
+  validates :status_id, presence: true
 
   belongs_to :host, class_name: "User"
   belongs_to :category
+  belongs_to :status
   has_many :votes
   has_many :users, through: :votes, source: :user
 end

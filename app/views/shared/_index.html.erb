@@ -1,0 +1,12 @@
+<%= render 'shared/index_menu' %>
+
+<div class="game_index_container">
+  <table>
+    <%= render 'shared/index_header' %>
+
+    <% sortedGameList = Game.all.sort_by { |option| [option.status_id, -option.signups, -option.updated_at.to_i] } %>
+    <% sortedGameList.each do |game| %>
+      <%= render 'shared/listing', game: game %>
+    <% end %>
+  </table>
+</div>

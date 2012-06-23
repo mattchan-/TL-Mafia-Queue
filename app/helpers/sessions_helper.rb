@@ -26,6 +26,11 @@ module SessionsHelper
     redirect_to root_path, notice: "You do not have permission to view this page" unless current_user?(@user)
   end
 
+  def is_owner?
+    @game = Game.find(params[:id])
+    redirect_to root_path, notice: "You are not the host of this game" unless @game.host == current_user
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)

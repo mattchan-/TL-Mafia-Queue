@@ -17,7 +17,7 @@
 
       <%= select :game, :category_id, Category.all.collect { |c| [c.name, c.id] } %>
 
-      <%= f.submit "Create Game", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Edit Game", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120622031655) do
+ActiveRecord::Schema.define(:version => 20120623045547) do
 
   create_table "categories", :force => true do |t|
     t.string   "name"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(:version => 20120622031655) do
     t.integer  "maximum_players"
     t.integer  "host_id"
     t.integer  "category_id"
-    t.boolean  "running"
+    t.integer  "status_id"
     t.integer  "signups"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
@@ -37,9 +37,17 @@ ActiveRecord::Schema.define(:version => 20120622031655) do
   add_index "games", ["category_id"], :name => "index_games_on_category_id"
   add_index "games", ["host_id"], :name => "index_games_on_host_id"
   add_index "games", ["maximum_players"], :name => "index_games_on_maximum_players"
-  add_index "games", ["running"], :name => "index_games_on_running"
   add_index "games", ["signups"], :name => "index_games_on_signups"
+  add_index "games", ["status_id"], :name => "index_games_on_status_id"
   add_index "games", ["title"], :name => "index_games_on_title", :unique => true
+
+  create_table "statuses", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "statuses", ["name"], :name => "index_statuses_on_name"
 
   create_table "users", :force => true do |t|
     t.string   "name"

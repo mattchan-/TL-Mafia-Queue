@@ -2,90 +2,40 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.playerList {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-color: #999;
-  padding: 5px;
+/* Game Show */
+
+div.hostButtons {
+  border-top: 2px solid #999;
+  border-bottom: 2px solid #999;
+  padding: 5px 0px;
 }
 
-.gamesContainer {
-  border-top: 2px solid;
-  border-color: #999;
-}
-
-#gameTableHeader {
-  font-weight: bold;
-}
-
-.gameShow {
-  border: 1px solid;
-  border-color: #999;
-  margin-bottom: 10px;
-  padding: 5px;
-}
-
-.hostInfo {
-  width: 100%;
-  #name {
-    width: 60%;
-    text-align: left;
-    font-size: 1.6em;
-    font-weight: bold;
+div.gameInfo {
+  border: 1px solid black;
+  margin: 10px 0px;
+  div.hostInfo {
+    background-color: #06C;
+    text-indent: 10px;
+    h3 {
+      font-size: 1.0em;
+      letter-spacing: 0px;
+      color: #FFF;
+      padding-top: 5px;
+      margin-bottom: 0px;
+    }
   }
-  #timeStamp {
-    text-align: right;
-    font-size: 1.2em;
-  }
-}
-
-.running {
-  a {
-    color: #FFF;
-    text-decoration: none;
-  }
-  a:hover {
-    color: #EEE;
-    text-decoration: underline;
-  }
-  background-color: #008000;
-  color: #FFF;
-}
-
-.pending {
-  background-color: #FFF68F;
-}
-
-.white {
-  background-color: #FFF;
-  a, a:hover {
-    color: #000;
-    text-decoration: none;
+  div.gameDescription {
+    padding: 10px;
+    background-color: #d9dde0;
+    div.playerList {
+      border-top: 2px solid #999;
+      padding: 5px 0px;
+      margin-top: 10px;
+      h3 {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+    }
   }
 }
 
-div.menu {
-  float: left;
-  padding: 10px;
-  width: 100%;
-  h1 {
-    font-size: 2.2em;
-    text-align: left;
-    letter-spacing: -1px;
-    margin-bottom: 2px;
-  }
-  h3 {
-    font-size: 1.2em;
-    text-align: left;
-    letter-spacing: -1px;
-    margin-bottom: 2px;
-  }
-  hr {
-    margin: 10px 0px;
-    border: 0;
-    border-top: 1px solid #eeeeee;
-  }
-  td {
-    padding-right: 20px;
-  }
-}

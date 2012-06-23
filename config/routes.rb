@@ -5,7 +5,7 @@ TLMafiaQueue::Application.routes.draw do
 
   resources :games do
     member do
-      post 'run'
+      post 'change_status'
     end
   end
   
