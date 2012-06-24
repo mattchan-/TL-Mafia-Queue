@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_filter :signed_in_user, only: [:new, :create, :edit, :update, :change_status, :destroy]
-  before_filter :is_owner?, only: [:edit, :update, :change_status, :destroy]
+  before_filter :signed_in_user,  only: [:new, :create, :edit, :update, :change_status, :destroy]
+  before_filter :is_owner?,   only: [:edit, :update, :change_status, :destroy]
 
  def new
    @game = Game.new

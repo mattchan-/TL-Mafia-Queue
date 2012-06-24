@@ -21,11 +21,6 @@ module SessionsHelper
     user == current_user
   end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to root_path, notice: "You do not have permission to view this page" unless current_user?(@user)
-  end
-
   def is_owner?
     @game = Game.find(params[:id])
     redirect_to root_path, notice: "You are not the host of this game" unless @game.host == current_user
@@ -39,7 +34,7 @@ module SessionsHelper
   def store_location
     session[:return_to] = request.fullpath
   end
-
+  
   def signed_in_user
     unless signed_in?
       store_location

@@ -1,7 +1,10 @@
 require 'spec_helper'
 
 describe GamesController do
-
+    before(:each) do
+      sign_in user
+      visit users_path
+    end
   describe "GET 'new'" do
     it "returns http success" do
       get 'new'

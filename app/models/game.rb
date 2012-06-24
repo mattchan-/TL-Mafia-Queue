@@ -7,11 +7,11 @@
 #  description     :text
 #  maximum_players :integer
 #  host_id         :integer
-#  running         :boolean
+#  category_id     :integer
+#  status_id       :integer
 #  signups         :integer
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
-#  category_id     :integer
 #
 
 class Game < ActiveRecord::Base

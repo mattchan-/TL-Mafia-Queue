@@ -4,6 +4,8 @@ gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 gem 'bb-ruby', '0.9.5'
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -29,6 +31,10 @@ end
 
 group :production do
   gem 'pg'
+end
+
+group :test do
+  gem 'capybara', '1.1.2'
 end
 
 gem 'jquery-rails'
