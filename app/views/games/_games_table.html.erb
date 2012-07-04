@@ -1,4 +1,8 @@
 <table>
   <%= render 'games/index_header' %>
   <%= render @games %>
+  <% if @games.total_pages > 1 %>
+    <%= will_paginate @games %>
+    <hr>
+  <% end %>
 </table>

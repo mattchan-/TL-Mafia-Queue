@@ -5,7 +5,3 @@
 <div class="game_index_container">
   <%= render 'games/games_table' %>
 </div>
-
-<% if @games.total_pages > 1 %>
-  <%= will_paginate @games %>
-<% end %>
