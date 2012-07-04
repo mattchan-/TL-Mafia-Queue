@@ -1,4 +1,5 @@
 class VotesController < ApplicationController
+  include GamesHelper
   before_filter :signed_in_user, only: [:create, :destroy]
 
   def create
@@ -7,22 +8,14 @@ class VotesController < ApplicationController
     @vote.game_id = params[:game_id]
     @vote.save
 
-    @vote.game.signups += 1
-    @vote.game.save
-
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user), notice: 'You have joined ' + @vote.game.title }
-    end
+    close_signups(@vote.game)
+    redirect_back_or root_path
   end
 
   def destroy
     @vote = Vote.find(params[:id])
-    @vote.game.signups -= 1
-    @vote.game.save
     @vote.destroy
 
-    respond_to do |format|
-      format.html { redirect_to user_path(current_user) }
-    end
+    redirect_back_or root_path
   end
 end

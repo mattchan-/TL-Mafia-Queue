@@ -10,7 +10,8 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_accessible :game_id, :user_id
+  attr_accessible :user_id, :game_id
+  validates :user_id, uniqueness: { scope: :game_id }
   belongs_to :user
   belongs_to :game # votes are deleted when a game is deleted.
 end

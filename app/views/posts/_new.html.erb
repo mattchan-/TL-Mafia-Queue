@@ -1,0 +1,14 @@
+<div class="post">
+  <div class="post_owner">
+    <h3><%= current_user.name %> &nbsp; <%= Time.now.strftime("%H:%M %b %d %Y") %></h3>
+  </div>
+  <div class="replyBox">
+    <%= form_for(@post, url: reply_game_path(id: @game.id)) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :content %>
+      </div>
+      <%= f.submit "Post", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

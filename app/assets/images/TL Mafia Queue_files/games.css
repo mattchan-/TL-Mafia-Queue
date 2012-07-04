@@ -1,0 +1,146 @@
+/* Game Show */
+/* line 8, ../../app/assets/stylesheets/games.css.scss */
+div.hostButtons {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  padding: 5px 0px;
+}
+
+/* line 14, ../../app/assets/stylesheets/games.css.scss */
+div.post {
+  border: 1px solid black;
+  margin: 10px 0px;
+}
+/* line 17, ../../app/assets/stylesheets/games.css.scss */
+div.post div.post_owner {
+  background-color: #06C;
+}
+/* line 19, ../../app/assets/stylesheets/games.css.scss */
+div.post div.post_owner h3 {
+  font-size: 1.0em;
+  letter-spacing: 0px;
+  color: #FFF;
+  padding: 5px 10px;
+  margin-bottom: 0px;
+}
+/* line 27, ../../app/assets/stylesheets/games.css.scss */
+div.post div.gameDescription, div.post div.content {
+  padding: 5px 10px;
+  background-color: #d9dde0;
+}
+/* line 31, ../../app/assets/stylesheets/games.css.scss */
+div.post div.playerList {
+  border-top: 2px solid #999;
+  padding-top: 5px;
+  margin-top: 10px;
+}
+/* line 35, ../../app/assets/stylesheets/games.css.scss */
+div.post div.playerList h3 {
+  font-weight: bold;
+  text-decoration: underline;
+}
+/* line 40, ../../app/assets/stylesheets/games.css.scss */
+div.post div.replyBox {
+  padding: 5px;
+  background-color: #d9dde0;
+}
+/* line 43, ../../app/assets/stylesheets/games.css.scss */
+div.post div.replyBox form {
+  margin: 0 0px;
+}
+
+/* Game Index */
+/* line 56, ../../app/assets/stylesheets/games.css.scss */
+div.menu {
+  padding: 10px;
+  width: 100%;
+}
+/* line 59, ../../app/assets/stylesheets/games.css.scss */
+div.menu hr {
+  margin: 10px 0px;
+  border: 0;
+  border-top: 1px solid #EEE;
+}
+/* line 64, ../../app/assets/stylesheets/games.css.scss */
+div.menu td {
+  padding-right: 20px;
+}
+
+/* line 69, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container {
+  border-top: 2px solid;
+  border-bottom: 2px solid;
+  padding-bottom: 10px;
+  border-color: #999;
+}
+/* line 74, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container table {
+  width: 100%;
+}
+/* line 76, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container table tr {
+  height: 30px;
+}
+/* line 79, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container table .categoryTag {
+  text-indent: 10px;
+}
+/* line 83, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container #gameTableHeader {
+  font-weight: bold;
+  font-size: 1.2em;
+  letter-spacing: -1px;
+}
+/* line 88, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container a {
+  text-decoration: none;
+}
+/* line 90, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container a:hover {
+  text-decoration: underline;
+}
+/* line 94, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Signups {
+  background-color: #0065C6;
+  color: #FFF;
+}
+/* line 97, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Signups a {
+  color: #FFF;
+}
+/* line 101, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Pending {
+  background-color: #FACB47;
+  color: #000;
+}
+/* line 104, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Pending a {
+  color: #000;
+}
+/* line 108, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Running {
+  background-color: #74AB00;
+  color: #000;
+}
+/* line 111, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Running a {
+  color: #000;
+}
+/* line 115, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Completed {
+  background-color: #DDD;
+  color: #000;
+}
+/* line 118, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .Completed a {
+  color: #000;
+}
+/* line 122, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .game_index_first_col {
+  background-color: #FFF;
+}
+/* line 124, ../../app/assets/stylesheets/games.css.scss */
+.game_index_container .game_index_first_col a, .game_index_container .game_index_first_col a:hover {
+  color: #000;
+  text-decoration: none;
+}

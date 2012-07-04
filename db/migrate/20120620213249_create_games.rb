@@ -6,8 +6,7 @@ class CreateGames < ActiveRecord::Migration
       t.integer :maximum_players
       t.integer :host_id
       t.integer :category_id
-      t.integer :status_id
-      t.integer :signups
+      t.integer :status_id, default: 1
 
     t.timestamps
     end
@@ -17,6 +16,5 @@ class CreateGames < ActiveRecord::Migration
     add_index :games, :host_id
     add_index :games, :category_id
     add_index :games, :status_id
-    add_index :games, :signups
   end
 end

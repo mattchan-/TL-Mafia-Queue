@@ -1,12 +1,11 @@
-<%= render 'games/index_menu' %>
+<div class="menu">
+  <%= render 'games/index_menu' %>
+</div>
 
 <div class="game_index_container">
-  <table>
-    <%= render 'games/index_header' %>
-
-    <% sortedGameList = @games.sort_by { |option| [option.status_id, -option.signups, -option.updated_at.to_i] } %>
-    <% sortedGameList.each do |game| %>
-      <%= render 'games/listing', game: game %>
-    <% end %>
-  </table>
+  <%= render 'games/games_table' %>
 </div>
+
+<% if @games.total_pages > 1 %>
+  <%= will_paginate @games %>
+<% end %>

@@ -1,27 +1,8 @@
 <% provide(:title, @user.name + '\'s Games') %>
-<%= render 'shared/index_menu' %>
+<div class="menu">
+  <%= render 'games/my_index_menu' %>
+</div>
 
 <div class="game_index_container">
-  <table class="gameIndexTable">
-    <%= render 'shared/index_header' %>
-
-    <tr class="breakmarker"><td colspan="6"><b><hr>Hosting:</b></td></tr>
-    <% hosting = @user.games.sort_by { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
-    <% hosting.each do |game| %>
-      <%= render 'shared/listing', game: game %>
-    <% end %>
-
-    <tr class="breakmarker"><td colspan="6"><b><hr>Playing:</b></td></tr>
-    <% playing = @user.signups.sort_by { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
-    <% playing.each do |game| %>
-      <%= render 'shared/listing', game: game %>
-    <% end %>
-
-    <tr class="breakmarker"><td colspan="6"><b><hr>Other Games:</b></td></tr>
-    <% otherGames = Game.all - @user.games - @user.signups %>
-    <% otherGames.sort_by! { |option| [option.status_id, -option.signups, option.updated_at.to_i] } %>
-    <% otherGames.each do |game| %>
-      <%= render 'shared/listing', game: game %>
-    <% end %>
-  </table>
+  <%= render 'games/my_games_table' %>
 </div>

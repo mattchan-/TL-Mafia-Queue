@@ -2,45 +2,24 @@
 
 <h1><%= @game.title %></h1>
 
-<% if signed_in? && @game.host == current_user %>
-  <div class="hostButtons">
-    <%= link_to 'Delete Game', game_path, method: :delete, confirm: "Are you sure?", class: "btn btn-primary" if @game.status_id == 1 %>
-    <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
-    <%= link_to 'Open Signups', change_status_game_path(status_id: 1), method: :post, class: "btn btn-primary" if @game.status_id == 3 %>
-    <%= link_to 'Run Game', change_status_game_path(status_id: 2), method: :post, class: "btn btn-primary" if @game.status_id == 1 || @game.status_id == 3 %>
-    <%= link_to 'Pause Game', change_status_game_path(status_id: 3), method: :post, class: "btn btn-primary" if @game.status_id == 2 %>
-    <%= link_to 'Game Over', change_status_game_path(status_id: 4), method: :post, class: "btn btn-primary" if @game.status_id == 2 || @game.status_id == 3 %>
-  </div>
+<% if host? %>
+  <%= render 'host_buttons' %>
 <% end %>
 
-<div class="gameInfo">
-  <div class="hostInfo">
-    <h3><%= @game.host.name %> &nbsp; <%= @game.created_at.strftime("%H:%M %b %d %Y") %><h3>
+<%= will_paginate @posts %>
+<%= render 'original_post' %>
+
+<!-- Game Comments -->
+
+<% if @posts.any? %>
+  <div class="posts_container">
+    <%= render @posts %>
   </div>
-  <div class="gameDescription">
-    <p><%= @game.description.bbcode_to_html.html_safe %></p>
-    <hr>
-    <p>Category: <%= @game.category.name %>
-    <p>Status: <%= @game.signups.to_s + '/' + @game.maximum_players.to_s + ' ' + @game.status.name %></p>
-    <div class="playerList">
-      <h3>Player List:</h3>
-      <br/>
-      <% @game.users.each_with_index do |user, index| %>
-        <%= index += 1 %>. <%= user.name %><br/>
-        <%= index + 1 if user == @game.users.last %>
-      <% end %>
-      <%= "1. " if @game.signups == 0 %>
-      <hr><%= @game.maximum_players %> of <%= @game.maximum_players %> players remaining.
-    </div>
-  </div>
-</div>
+  <%= will_paginate @posts %>
+<% end %>
 
+<!-- Reply Form -->
 
-
-<% if signed_in? && @game.host != current_user %>
-  <% if current_user.votes.find_by_game_id(@game.id).nil? %>
-    <%= link_to '/in', votes_path(game_id: @game.id, user_id: current_user), method: :post, class: "btn btn-primary" if @game.status_id == 1 %>
-  <% else %>
-    <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-primary" if @game.status_id == 1 %>
-  <% end %>
+<% if signed_in? %>
+  <%= render 'posts/new' %>
 <% end %>

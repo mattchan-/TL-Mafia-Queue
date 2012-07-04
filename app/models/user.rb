@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_many :games, foreign_key: "host_id"
   has_many :signups, through: :votes, class_name: "Game", source: :game # user.signups returns the array of games the user is signed up for
   has_many :votes                                                       # user.votes returns the array of votes the player has cast
+  has_many :posts, dependent: :destroy
 
   private
   

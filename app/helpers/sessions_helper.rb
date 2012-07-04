@@ -21,9 +21,9 @@ module SessionsHelper
     user == current_user
   end
 
-  def is_owner?
+  def signed_up_for?
     @game = Game.find(params[:id])
-    redirect_to root_path, notice: "You are not the host of this game" unless @game.host == current_user
+    current_user.signups.exists?(@game.id)
   end
 
   def redirect_back_or(default)

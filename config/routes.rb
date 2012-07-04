@@ -3,13 +3,15 @@ TLMafiaQueue::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :games do
+  resources :games, except: [:index] do
     member do
-      post 'change_status'
+      post 'run'
+      post 'finish'
+      post 'reply'
     end
   end
   
-  resources :votes, only: [:new, :create, :destroy]
+  resources :votes, only: [:create, :destroy]
 
   root to: 'static_pages#home'
 

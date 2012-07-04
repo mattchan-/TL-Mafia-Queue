@@ -14,3 +14,10 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require_tree .
+
+$(function() {
+  $(".menu td a").live("click", function() {
+    $.getScript(this.href);
+    return false;
+  });
+});

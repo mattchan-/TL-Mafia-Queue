@@ -154,7 +154,7 @@ aside {
 input, textarea, select, .uneditable-input {
   border: 1px solid #bbb;
   width: 100%;
-  padding: 10px;
+  padding: 5pxpx;
   height: auto;
   margin-bottom: 15px;
   @include box_sizing;
@@ -190,108 +190,19 @@ input, textarea, select, .uneditable-input {
 
 /* tables */
 
-.categoryTag {
-  text-indent: 10px;
-}
-
 .btn-small {
   width: 50px;
-}
-
-/* Game Index */
-
-div.menu {
-  padding: 10px;
-  width: 100%;
-  hr {
-    margin: 10px 0px;
-    border: 0;
-    border-top: 1px solid #EEE;
-  }
-  td {
-    padding-right: 20px;
-  }
-}
-
-.game_index_container {
-  border-top: 2px solid;
-  border-bottom: 2px solid;
-  border-color: #999;
-  tr {
-    height: 30px;
-  }
-}
-
-table.gameIndexTable {
-  width: 100%;
-  margin-bottom: 10px;
-  padding: 10px 0px;
-}
-
-#gameTableHeader {
-  font-weight: bold;
-  font-size: 1.2em;
-  letter-spacing: -1px;
-}
-
-.Signups {
-  background-color: #06C;
-  color: #FFF;
-  a {
-    color: #FFF;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.Running {
-  background-color: #060;
-  color: #FFF;
-  a {
-    color: #FFF;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.Paused {
-  background-color: #FC3;
-  color: #000;
-  a {
-    color: #000;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.Completed {
-  background-color: #DDD;
-  color: #000;
-  a {
-    color: #000;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-}
-
-.game_index_first_col {
-  background-color: #FFF;
-  a, a:hover {
-    color: #000;
-    text-decoration: none;
-  }
 }
 
 .breakmarker {
   hr {
     margin: 2px;
   }
+}
+
+/* pagination */
+
+.pagination {
+  text-align: right;
+  margin: 10px 0px;
 }

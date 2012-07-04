@@ -15,7 +15,7 @@
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :description, :maximum_players, :status_id, :title, :signups, :category_id
+  attr_accessible :title, :description, :maximum_players, :category_id, :status_id
 
   validates :title, presence: true, length: { maximum: 50 },
                    uniqueness: { case_sensitive: false }
@@ -29,5 +29,6 @@ class Game < ActiveRecord::Base
   belongs_to :category
   belongs_to :status
   has_many :votes
-  has_many :users, through: :votes, source: :user
+  has_many :players, class_name: "User", through: :votes, source: :user
+  has_many :posts, dependent: :destroy
 end

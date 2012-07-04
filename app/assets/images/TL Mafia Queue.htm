@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html autopagermatchedrules="1"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>TL Mafia Queue</title>
+    <link href="TL%20Mafia%20Queue_files/application.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/custom.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/games.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/scaffolds.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/sessions.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/static_pages.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/users.css" media="all" rel="stylesheet" type="text/css">
+<link href="TL%20Mafia%20Queue_files/votes.css" media="all" rel="stylesheet" type="text/css">
+    <script src="TL%20Mafia%20Queue_files/jquery.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/jquery_ujs.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-transition.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-alert.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-button.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-carousel.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-collapse.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-dropdown.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-modal.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-scrollspy.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-tab.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-tooltip.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-popover.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap-typeahead.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/bootstrap.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/games.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/sessions.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/static_pages.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/users.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/votes.js" type="text/javascript"></script>
+<script src="TL%20Mafia%20Queue_files/application.js" type="text/javascript"></script>
+    <meta content="authenticity_token" name="csrf-param">
+<meta content="zJoQN6oiA+QEbDB7cHDn/rQa5uDIuIboJxWTPuuHbzk=" name="csrf-token">
+    <!--[if lt IE 9]>
+<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+  </head>
+  <body>
+    <header class="navbar navbar-fixed-top">
+  <div class="navbar-inner">
+    <div class="container">
+      <a href="http://localhost:3000/" id="logo">TL Mafia Queue</a>
+      <nav>
+        <ul class="nav pull-right">
+          <li><a href="http://localhost:3000/">Home</a></li>
+          <li><a href="http://localhost:3000/help">Help</a></li>
+            <li><a href="http://localhost:3000/users">Users</a></li>
+              <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Incognito <b class="caret"></b>
+              </a>
+              <ul class="dropdown-menu">
+                <li><a href="http://localhost:3000/users/1">Profile</a></li>
+                <li><a href="http://localhost:3000/users/1/edit">Settings</a></li>
+                <li class="divider"></li>
+                <li>
+                  <a href="http://localhost:3000/signout" data-method="delete" rel="nofollow">Sign out</a>
+                </li>
+              </ul>
+            </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</header>
+    <div class="container">
+      
+<div class="menu">
+  <h1>All Games</h1>
+  <hr>
+  <table>
+    <tbody><tr>
+      <td><a href="http://localhost:3000/games/new" class="btn btn-primary">Create New Game</a></td>
+      <td><h3>Sort By:</h3></td>
+      <td><a href="#" class="sort_by">Status</a></td>
+      <td><a href="#" class="sort_by">Popular</a></td>
+      <td><a href="#" class="sort_by">Category</a></td>
+      <td><a href="#" class="sort_by">Recently Updated</a></td>
+    </tr>
+  </tbody></table>
+    <div class="pagination">
+      <div class="pagination"><ul><li class="prev previous_page disabled"><a href="#">← Previous</a></li> <li class="active"><a rel="start" href="http://localhost:3000/?direction=ASC&amp;page=1&amp;sort=status">1</a></li> <li><a rel="next" href="http://localhost:3000/?direction=ASC&amp;page=2&amp;sort=status">2</a></li> <li class="next next_page "><a rel="next" href="http://localhost:3000/?direction=ASC&amp;page=2&amp;sort=status">Next →</a></li></ul></div>
+    </div>
+</div>
+
+<div class="game_index_container">
+  <table>
+    <tbody><tr id="gameTableHeader">
+  <td height="35" width="5%">&nbsp;</td>
+  <td height="35" width="10%"><a href="http://localhost:3000/?direction=ASC&amp;sort=category_id">Category</a></td>
+  <td width="30%"><a href="http://localhost:3000/?direction=ASC&amp;sort=title">Game Name</a></td>
+  <td width="18%"><a href="http://localhost:3000/?direction=ASC&amp;sort=host_id">Host</a></td>
+  <td width="15%"><a href="http://localhost:3000/?direction=ASC&amp;sort=status_id">Status</a></td>
+  <td width="7%">Replies</td>
+  <td width="15%"><a href="http://localhost:3000/?direction=DESC&amp;sort=updated_at">Last Update</a></td>
+</tr>
+    <tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=4&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/4">TL Mafia IV</a></td>
+  <td>flamewheel</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=5&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/5">TL Mafia V</a></td>
+  <td>GMarshal</td>
+  <td>0/30 Signups Open</td>
+  <td>5</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=6&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/6">TL Mafia VI</a></td>
+  <td>Qatol</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is signed up, show /out -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes/58" class="btn btn-small" data-method="delete" rel="nofollow">/out</a></td>
+      
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/7">TL Mafia VII</a></td>
+  <td>dreamflower</td>
+  <td>1/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=8&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/8">TL Mafia VIII</a></td>
+  <td>Radfield</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=9&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/9">TL Mafia IX</a></td>
+  <td>Palmar</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=10&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/10">TL Mafia X</a></td>
+  <td>prplhz</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>19:19 Jul 03 2012</td>
+</tr><tr class="Completed">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/1/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/1">TL Mafia I</a></td>
+  <td>Incognito</td>
+  <td>0/30 Completed</td>
+  <td>0</td>
+  <td>19:38 Jul 03 2012</td>
+</tr><tr class="Completed">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/11/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/11">Inception Mafia</a></td>
+  <td>Incognito</td>
+  <td>1/1 Completed</td>
+  <td>0</td>
+  <td>19:51 Jul 03 2012</td>
+</tr><tr class="Completed">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/14/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[W]</td>
+  <td><a href="http://localhost:3000/games/14">Newbie Mafia VII</a></td>
+  <td>Incognito</td>
+  <td>0/0 Completed</td>
+  <td>0</td>
+  <td>21:20 Jul 03 2012</td>
+</tr><tr class="Completed">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is signed up, show /out -->
+        <td class="game_index_first_col"></td>
+      
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/2">TL Mafia II</a></td>
+  <td>Ver</td>
+  <td>1/30 Completed</td>
+  <td>0</td>
+  <td>21:36 Jul 03 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/16/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/16">latida</a></td>
+  <td>Incognito</td>
+  <td>0/123 Signups Open</td>
+  <td>0</td>
+  <td>23:25 Jul 03 2012</td>
+</tr><tr class="Running">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/15/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/15">TL Mafia LX</a></td>
+  <td>Incognito</td>
+  <td>0/0 Running</td>
+  <td>3</td>
+  <td>00:24 Jul 04 2012</td>
+</tr><tr class="Pending">
+   <!-- if signed in... -->
+     <!-- if user is game host, show run/pause -->
+      <td class="game_index_first_col"><a href="http://localhost:3000/games/17/edit" class="btn btn-small">/edit</a></td>
+    
+  
+  <td class="categoryTag">[M][T]</td>
+  <td><a href="http://localhost:3000/games/17">TL Mafia L</a></td>
+  <td>Incognito</td>
+  <td>1/1 Pending</td>
+  <td>0</td>
+  <td>00:24 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is signed up, show /out -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes/59" class="btn btn-small" data-method="delete" rel="nofollow">/out</a></td>
+      
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/19">TL Mafia XII</a></td>
+  <td>Ver</td>
+  <td>1/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=21&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/21">TL Mafia XIV</a></td>
+  <td>flamewheel</td>
+  <td>1/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=22&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/22">TL Mafia XV</a></td>
+  <td>GMarshal</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=23&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/23">TL Mafia XVI</a></td>
+  <td>Qatol</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=24&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/24">TL Mafia XVII</a></td>
+  <td>dreamflower</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr><tr class="Signups" open="">
+   <!-- if signed in... -->
+     <!-- if user is not game host... -->
+       <!-- ...and user is not signed up, show /in -->
+        <td class="game_index_first_col"><a href="http://localhost:3000/votes?game_id=25&amp;user_id=1" class="btn btn-small" data-method="post" rel="nofollow">/in</a></td>
+
+  
+  <td class="categoryTag">[N]</td>
+  <td><a href="http://localhost:3000/games/25">TL Mafia XVIII</a></td>
+  <td>Radfield</td>
+  <td>0/30 Signups Open</td>
+  <td>0</td>
+  <td>01:30 Jul 04 2012</td>
+</tr>
+  </tbody></table>
+</div>
+      <footer class="footer">
+  <small>
+    TL Mafia Queue
+  </small>
+  <nav>
+    <ul>
+      <li><a href="http://www.teamliquid.net/forum/index.php?viewdays=0&amp;show_part=31">TL Mafia Forum</a></li>
+      <li><a href="http://localhost:3000/help">Help</a></li>
+    </ul>
+  </nav>
+</footer>
+      <pre class="debug_dump">--- !ruby/hash:ActiveSupport::HashWithIndifferentAccess
+direction: ASC
+sort: status
+controller: static_pages
+action: home
+</pre>
+    </div>
+  
+</body></html>
