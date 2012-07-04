@@ -2,14 +2,14 @@
 <h1>All users</h1>
 <hr>
 
-<div class="pagination">
+<% if @games.total_pages > 1 %>
   <%= will_paginate %>
-</div>
+<% end %>
 
 <ul class="users">
   <%= render @users %>
 </ul>
 
-<div class="pagination">
+<% if @games.total_pages > 1 %>
   <%= will_paginate %>
-</div>
+<% end %>
