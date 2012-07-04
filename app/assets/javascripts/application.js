@@ -16,7 +16,7 @@
 //= require_tree .
 
 $(function() {
-  $(".menu td a").live("click", function() {
+  $(".menu .sortable a").live("click", function() {
     $.getScript(this.href);
     return false;
   });
