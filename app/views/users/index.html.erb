@@ -2,7 +2,7 @@
 <h1>All users</h1>
 <hr>
 
-<% if @games.total_pages > 1 %>
+<% if @users.total_pages > 1 %>
   <%= will_paginate %>
 <% end %>
 
@@ -10,6 +10,6 @@
   <%= render @users %>
 </ul>
 
-<% if @games.total_pages > 1 %>
+<% if @users.total_pages > 1 %>
   <%= will_paginate %>
 <% end %>
