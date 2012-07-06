@@ -17,12 +17,6 @@ module BBRuby
       'Embolden text',
       'Look [b]here[/b]',
       :bold],
-    'Center' => [
-      /\[center(:.*)?\](.*?)\[\/center\1?\]/mi,
-      '<div style="text-align:center">\2</div>',
-      'Center elements',
-      '[center]Look here[/center]',
-      :center],
     'Italics' => [
       /\[i(:.+)?\](.*?)\[\/i\1?\]/mi,
       '<em>\2</em>',
@@ -41,48 +35,6 @@ module BBRuby
       'Strikeout',
       '[s]nevermind[/s]',
       :strikeout],
-    'Horizontal Rule' => [
-      /\[hr(:[^\[]+)?\]([^(\[|\<)]+)/mi,
-      '<hr>',
-      'Add a horizontal rule',
-      'There is a horizontal rule [hr] between this sentence',
-      :hr],
-    'Delete' => [
-      /\[del(:.+)?\](.*?)\[\/del\1?\]/mi,
-      '<del>\2</del>',
-      'Deleted text',
-      '[del]deleted text[/del]',
-      :delete],
-    'Insert' => [
-      /\[ins(:.+)?\](.*?)\[\/ins\1?\]/mi,
-      '<ins>\2</ins>',
-      'Inserted Text',
-      '[ins]inserted text[/del]',
-      :insert],
-    'Code' => [
-      /\[code(:.+)?\](.*?)\[\/code\1?\]/mi,
-      '<code>\2</code>',
-      'Code Text',
-      '[code]some code[/code]',
-      :code],
-    'Size' => [
-      /\[size=#{@@quote_matcher}(.*?)\1\](.*?)\[\/size\]/im,
-      '<span style="font-size: \2px;">\3</span>',
-      'Change text size',
-      '[size=20]Here is some larger text[/size]',
-      :size],
-    'Color' => [
-      /\[color=#{@@quote_matcher}(\w+|\#\w{6})\1(:.+)?\](.*?)\[\/color\3?\]/im,
-      '<span style="color: \2;">\4</span>',
-      'Change text color',
-      '[color=red]This is red text[/color]',
-      :color],
-    'Spoiler' => [
-      /\[spoiler\](.*?)\[\/spoiler\1?\]/mi,
-      '<span class="spoiler">\1</span>',
-      'spoiler',
-      '[spoiler]spoiler[/spoiler]',
-      :spoiler],
     'Red' => [
       /\[red(:.*)?\](.*?)\[\/red\1?\]/mi,
       '<span style="color:red;">\2</span>',
@@ -101,6 +53,42 @@ module BBRuby
       'Change text color to blue',
       '[blue]This is blue text[/blue]',
       :blue],
+    'Color' => [
+      /\[color=#{@@quote_matcher}(\w+|\#\w{6})\1(:.+)?\](.*?)\[\/color\3?\]/im,
+      '<span style="color: \2;">\4</span>',
+      'Change text color',
+      '[color=red]This is red text[/color]',
+      :color],
+    'Center' => [
+      /\[center(:.*)?\](.*?)\[\/center\1?\]/mi,
+      '<div style="text-align:center">\2</div>',
+      'Center elements',
+      '[center]Look here[/center]',
+      :center],
+    'Horizontal Rule' => [
+      /\[hr(:[^\[]+)?\]/mi,
+      '<hr>',
+      'Add a horizontal rule',
+      'There is a horizontal rule [hr] between this sentence',
+      :hr],
+    'Code' => [
+      /\[code(:.+)?\](.*?)\[\/code\1?\]/mi,
+      '<code>\2</code>',
+      'Code Text',
+      '[code]some code[/code]',
+      :code],
+    'Size' => [
+      /\[size=#{@@quote_matcher}(.*?)\1\](.*?)\[\/size\]/im,
+      '<span style="font-size: \2px;">\3</span>',
+      'Change text size',
+      '[size=20]Here is some larger text[/size]',
+      :size],
+    'Spoiler' => [
+      /\[spoiler\](.*?)\[\/spoiler\1?\]/mi,
+      '<a class="spoiler" href="#"><span>+ Show</span> Spoiler<span> +</span></a><div class="spoiler_content" style="display:none">\1</div>',
+      'spoiler',
+      '[spoiler]spoiler[/spoiler]',
+      :spoiler],
     'Ordered List' => [
       /\[ol\](.*?)\[\/ol\]/mi,
       '<ol>\1</ol>',
@@ -162,15 +150,9 @@ module BBRuby
       '[dd]my definition[/dd',
       :definition],
     'Quote' => [
-      /\[quote(:.*)?=(?:&quot;)?(.*?)(?:&quot;)?\](.*?)\[\/quote\1?\]/mi,
-      '<fieldset><legend>\2</legend><blockquote>\3</blockquote></fieldset>',
-      'Quote with citation',
-      "[quote=mike]Now is the time...[/quote]",
-      :quote],
-    'Quote (Sourceless)' => [
       /\[quote(:.*)?\](.*?)\[\/quote\1?\]/mi,
       '<div class="quote"><hr>\2<hr></div>',
-      'Quote (sourceclass)',
+      'Quote',
       "[quote]Now is the time...[/quote]",
       :quote],
     'Link' => [
@@ -208,39 +190,7 @@ module BBRuby
       '<img src="\2.\3" alt="" />',
       'Display an image',
       'Check out this crazy cat: [img]http://catsweekly.com/crazycat.jpg[/img]',
-      :image],   
-    'YouTube' => [
-      /\[youtube\](.*?)\?v=([\w\d\-]+).*\[\/youtube\]/im,
-      # '<object width="400" height="330"><param name="movie" value="http://www.youtube.com/v/\2"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/\2" type="application/x-shockwave-flash" wmode="transparent" width="400" height="330"></embed></object>',
-      '<object width="320" height="265"><param name="movie" value="http://www.youtube.com/v/\2"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/\2" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="320" height="265"></embed></object>',
-      'Display a video from YouTube.com', 
-      '[youtube]http://youtube.com/watch?v=E4Fbk52Mk1w[/youtube]',
-      :video],
-    'YouTube (Alternative)' => [
-      /\[youtube\](.*?)\/v\/([\w\d\-]+)\[\/youtube\]/im,
-      # '<object width="400" height="330"><param name="movie" value="http://www.youtube.com/v/\2"></param><param name="wmode" value="transparent"></param><embed src="http://www.youtube.com/v/\2" type="application/x-shockwave-flash" wmode="transparent" width="400" height="330"></embed></object>',
-      '<object width="320" height="265"><param name="movie" value="http://www.youtube.com/v/\2"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/\2" type="application/x-shockwave-flash" allowscriptaccess="always" allowfullscreen="true" width="320" height="265"></embed></object>',
-      'Display a video from YouTube.com (alternative format)', 
-      '[youtube]http://youtube.com/watch/v/E4Fbk52Mk1w[/youtube]',
-      :video],
-    'Vimeo' => [
-      /\[vimeo\](.*?)\/(\d+)\[\/vimeo\]/im,
-      '<object type="application/x-shockwave-flash" width="500" height="350" data="http://www.vimeo.com/moogaloop.swf?clip_id=\2"><param name="quality" value="best" /><param name="allowfullscreen" value="true" /><param name="scale" value="showAll" /><param name="movie" value="http://www.vimeo.com/moogaloop.swf?clip_id=\2" /></object>',
-      'Display a video from Vimeo', 
-      '[vimeo]http://www.vimeo.com/3485239[/vimeo]',
-      :video],
-    'Google Video' => [
-      /\[gvideo\](.*?)\?docid=([-]{0,1}\d+).*\[\/gvideo\]/mi,
-      '<embed style="width:400px; height:326px;" id="VideoPlayback" type="application/x-shockwave-flash" src="http://video.google.com/googleplayer.swf?docId=\2" flashvars=""> </embed>',
-      'Display a video from Google Video', 
-      '[gvideo]http://video.google.com/videoplay?docid=-2200109535941088987[/gvideo]',
-      :video],
-    'Email' => [
-      /\[email(:.+)?\](.+)\[\/email\1?\]/i,
-      '<a href="mailto:\2">\2</a>',
-      'Link to email address',
-      '[email]wadus@wadus.com[/email]',
-      :email]
+      :image]
   }
 
   class << self
@@ -289,6 +239,19 @@ module BBRuby
 
       # return markup
       text
+    end
+
+    def parse_post(text, tags_alternative_definition={}, escape_html=true, method=:disable, *tags)
+      if escape_html
+        text.gsub!( '&', '&' )
+        text.gsub!( '<', '<' )
+        text.gsub!( '>', '>' )
+      end
+
+      text.gsub!(/\[quote\]/, '<div class="quote"><hr>\2')
+      text.gsub!(/\[\/quote\]/, '<hr></div>')
+
+      BBRuby.to_html(text, tags_alternative_definition, false, method, tags)
     end
     
     # The same as BBRuby.to_html except the output is passed through simple_format first
@@ -396,7 +359,7 @@ class String
   #   output = text.bbcode_to_html({}, false)
   #
   def bbcode_to_html(tags_alternative_definition = {}, escape_html=true, method=:disable, *tags)
-    BBRuby.to_html(self, tags_alternative_definition, escape_html, method, *tags)
+    BBRuby.parse_post(self, tags_alternative_definition, escape_html, method, *tags)
   end
 
   # Replace the string contents with the HTML-converted markup

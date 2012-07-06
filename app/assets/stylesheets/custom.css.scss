@@ -219,9 +219,14 @@ input, textarea, select, .uneditable-input {
   }
 }
 
-.spoiler {
-  color: #d9dde0;
-  a {
-    color: #d9dde0;
-  }
+a.spoiler {
+  color: #808080;
+  font-family: monospace;
+}
+
+div.spoiler_content {
+  background-color: #EBEFF2;
+  padding: 5px;
+  border: 1px solid #888;
+  display:none;
 }
