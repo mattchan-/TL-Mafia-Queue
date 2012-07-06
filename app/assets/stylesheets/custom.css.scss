@@ -206,3 +206,22 @@ input, textarea, select, .uneditable-input {
   text-align: right;
   margin: 10px 0px;
 }
+
+.quote { 
+  margin-right:8px;
+  padding-left:40px;
+  font-size:9pt;
+  hr {
+    height:1px;
+    border:0;
+    color:#000261;
+    background-color:#000261;
+  }
+}
+
+.spoiler {
+  color: #d9dde0;
+  a {
+    color: #d9dde0;
+  }
+}
