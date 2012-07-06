@@ -71,24 +71,24 @@ module BBRuby
       'Add a horizontal rule',
       'There is a horizontal rule [hr] between this sentence',
       :hr],
-    'Code' => [
-      /\[code(:.+)?\](.*?)\[\/code\1?\]/mi,
-      '<code>\2</code>',
-      'Code Text',
-      '[code]some code[/code]',
-      :code],
-    'Size' => [
-      /\[size=#{@@quote_matcher}(.*?)\1\](.*?)\[\/size\]/im,
-      '<span style="font-size: \2px;">\3</span>',
-      'Change text size',
-      '[size=20]Here is some larger text[/size]',
-      :size],
+    'Quote' => [
+      /\[quote(:.*)?\](.*?)\[\/quote\1?\]/mi,
+      '<div class="quote"><hr>\2<hr></div>',
+      'Quote',
+      "[quote]Now is the time...[/quote]",
+      :quote],
     'Spoiler' => [
       /\[spoiler\](.*?)\[\/spoiler\1?\]/mi,
       '<a class="spoiler" href="#"><span>+ Show</span> Spoiler<span> +</span></a><div class="spoiler_content" style="display:none">\1</div>',
       'spoiler',
       '[spoiler]spoiler[/spoiler]',
       :spoiler],
+    'Code' => [
+      /\[code(:.+)?\](.*?)\[\/code\1?\]/mi,
+      '<pre style="width: -20px; overflow-x:auto; font: 9pt monospace; margin: 0 5px; padding: 4px 6px; border: 1px solid black; background-color: #EBEFF2;">\2</pre>',
+      'Code Text',
+      '[code]some code[/code]',
+      :code],
     'Ordered List' => [
       /\[ol\](.*?)\[\/ol\]/mi,
       '<ol>\1</ol>',
@@ -149,12 +149,6 @@ module BBRuby
       'Definition definitions',
       '[dd]my definition[/dd',
       :definition],
-    'Quote' => [
-      /\[quote(:.*)?\](.*?)\[\/quote\1?\]/mi,
-      '<div class="quote"><hr>\2<hr></div>',
-      'Quote',
-      "[quote]Now is the time...[/quote]",
-      :quote],
     'Link' => [
       /\[url=(.*?)\](.*?)\[\/url\]/mi,
       '<a href="\1">\2</a>',
