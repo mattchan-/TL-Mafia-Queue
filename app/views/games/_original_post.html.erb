@@ -16,7 +16,7 @@
       <%= (@game.players.count + 1).to_s + '.' if @game.status_id == 1 %>
       <hr><%= @game.maximum_players %> of <%= @game.maximum_players %> players remaining.
     </div>
-    <% if !host? %>
+    <% if signed_in? && !host? %>
       <%= render 'signup_buttons' %>
     <% end %>
   </div>

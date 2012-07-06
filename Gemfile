@@ -4,7 +4,7 @@ gem 'rails', '3.2.6'
 gem 'bootstrap-sass', '2.0.0'
 gem 'bcrypt-ruby', '3.0.1'
 #gem 'bb-ruby', '0.9.5'
-#gem 'ruby-bbcode'
+#gem 'rbbcode'
 gem 'will_paginate'
 gem 'bootstrap-will_paginate'
 
