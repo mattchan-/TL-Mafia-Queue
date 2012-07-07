@@ -1,5 +1,5 @@
 class StaticPagesController < ApplicationController
-  WillPaginate.per_page = 20
+  WillPaginate.per_page = 30
 
   helper_method :sort_column, :sort_direction
 

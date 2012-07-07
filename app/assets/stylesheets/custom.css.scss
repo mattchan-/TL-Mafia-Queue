@@ -211,15 +211,18 @@ input, textarea, select, .uneditable-input {
   margin: 10px 0px;
 }
 
+/* BBCode */
+
 .quote { 
   margin-right:8px;
-  padding-left:40px;
+  padding-left:20px;
   font-size:8pt;
   hr {
+    margin: 3px 0px;
     height:1px;
     border:0;
-    color:#000261;
-    background-color:#000261;
+    color:#888;
+    background-color:#888;
   }
 }
 

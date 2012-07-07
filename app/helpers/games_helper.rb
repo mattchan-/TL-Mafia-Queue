@@ -8,7 +8,7 @@ module GamesHelper
   
   def host?
     @game = Game.find(params[:id])
-    @game.host == current_user
+    @game.host == current_user || current_user.admin?
   end
 
   def host_privileges

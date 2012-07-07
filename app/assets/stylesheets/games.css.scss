@@ -22,6 +22,22 @@ div.post {
       padding: 5px 10px;
       margin-bottom: 0px;
     }
+    td.post_header {
+      width: 70%;
+    }
+    td.post_options {
+      width: 30%;
+      text-align: right;
+      font-size: 10px;
+      padding-right: 10px;
+      a {
+        color: #FFF;
+        text-decoration: underline;
+        &:hover {
+          color: #FFF;
+        }
+      }
+    }
   }
   div.gameDescription, div.content {
     padding: 5px 10px;
@@ -138,4 +154,8 @@ div.menu {
       text-decoration: none;
     }
   }
+}
+
+table {
+  width: 100%;
 }

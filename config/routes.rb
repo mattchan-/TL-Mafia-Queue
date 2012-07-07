@@ -8,6 +8,9 @@ TLMafiaQueue::Application.routes.draw do
       post 'run'
       post 'finish'
       post 'reply'
+      get 'quote'
+      post 'quote'
+      resources :posts, only: [:new, :create, :destroy]
     end
   end
   

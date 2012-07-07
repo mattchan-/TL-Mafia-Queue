@@ -20,5 +20,29 @@
     <li>Sort games by status or recently updated</li>
     <li>Signup/Leave games</li>
     <li>Comment on games</li>
+    <li>All posting supports BBCode - Supported Tags:</li>
+      <ul>
+        <li><%= '[b]&#91;b] bold &#91;/b][/b]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[i]&#91;i] italic &#91;/i][/i]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[u]&#91;u] underline &#91;/u][/u]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[s]&#91;s] strikethrough &#91;/s][/s]'.bbcode_to_html.html_safe %></li>
+        <br>
+        <li><%= '[red]&#91;red] red colored text &#91;/red][/red]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[green]&#91;green] green colored text &#91;/green][/green]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[blue]&#91;blue] blue colored text &#91;/blue][/blue]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[center]&#91;center] center text &#91;/center][/center]'.bbcode_to_html.html_safe %></li>
+        <br>
+        <li>[list][/list] or [ul][/ul] - unordered lists</li>
+        <li>[list=1][/list] or [ol][/ol] - ordered lists (numerical)</li>
+        <li>[list=a][/list] - ordered list (alphabetical)</li>
+        <li>[li][/li] or [*] - list item</li>
+        <br>
+        <li><%= '[url=http://www.google.com/]&#91;url=http://www.google.com/] Google &#91;/url][/url]'.bbcode_to_html.html_safe %></li>
+        <li>[img]http://address/of/image/file[/img]</li>
+        <li><%= '[spoiler]&#91;spoiler] hidden message &#91;/spoiler][/spoiler]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[spoiler=important message]&#91;spoiler=important message] important message!!! &#91;/spoiler][/spoiler]'.bbcode_to_html.html_safe %></li>
+        <li><%= '[quote]&#91;quote] quote &#91;/quote][/quote]'.bbcode_to_html.html_safe %></li>
+      </ul>
+    <li>A mini game is arbitrarily defined to be a game with 18 players or less.</li>
   </ul>
 </div>

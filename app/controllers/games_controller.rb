@@ -61,6 +61,19 @@ class GamesController < ApplicationController
     end
   end
 
+  def quote
+    @game = Game.find(params[:game_id])
+    @post = current_user.posts.build(params[:post])
+    @quoted_post = Post.find(params[:post_id])
+    @post.game_id = @game.id
+    @game.touch
+
+    if @post.save
+      flash[:success] = "Reply Successful"
+      redirect_to game_path(@game)
+    end
+  end
+
   def run
     @game = Game.find(params[:id])
     case @game.status_id

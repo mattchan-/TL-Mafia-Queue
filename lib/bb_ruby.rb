@@ -6,7 +6,7 @@ module BBRuby
 
   # allowable image formats
   @@imageformats = 'png|bmp|jpg|gif|jpeg'
-  @@quote_matcher = '(&quot;|&apos;|)'
+  @@quote_matcher = '(&spoil;|&apos;|)'
 
   # built-in BBCode tabs that will be processed
   @@tags = {
@@ -83,6 +83,12 @@ module BBRuby
       'spoiler',
       '[spoiler]spoiler[/spoiler]',
       :spoiler],
+    'Spoiler (with description)' => [
+      /\[spoiler(:.*)?=(?:&spoil;)?(.*?)(?:&spoil;)?\](.*?)\[\/spoiler\1?\]/mi,
+      '<a class="spoiler" href="#"><span>+ Show</span> Spoiler [\2]<span> +</span></a><div class="spoiler_content" style="display:none">\3</div>',
+      'Quote with citation',
+      "[quote=mike]Now is the time...[/quote]",
+      :quote],
     'Code' => [
       /\[code(:.+)?\](.*?)\[\/code\1?\]/mi,
       '<pre style="width: -20px; overflow-x:auto; font: 9pt monospace; margin: 0 5px; padding: 4px 6px; border: 1px solid black; background-color: #EBEFF2;">\2</pre>',
@@ -147,7 +153,7 @@ module BBRuby
       /\[dd\](.*?)\[\/dd\]/mi,
       '<dd>\1</dd>',
       'Definition definitions',
-      '[dd]my definition[/dd',
+      '[dd]my definition[/dd]',
       :definition],
     'Link' => [
       /\[url=(.*?)\](.*?)\[\/url\]/mi,

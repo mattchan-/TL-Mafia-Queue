@@ -7,13 +7,13 @@
       <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :title %>
-      <%= f.text_field :title, placeholder: @game.title %>
+      <%= f.text_field :title %>
 
       <%= f.label :description %>
-      <%= f.text_area :description, placeholder: @game.description %>
+      <%= f.text_area :description %>
 
       <%= f.label :maximum_players %>
-      <%= f.text_field :maximum_players, placeholder: @game.maximum_players %>
+      <%= f.text_field :maximum_players %>
 
       <%= select :game, :category_id, Category.all.collect { |c| [c.name, c.id] } %>
 
