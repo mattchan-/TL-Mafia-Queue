@@ -4,11 +4,12 @@
 #
 #  id              :integer         not null, primary key
 #  name            :string(255)
+#  email           :string(255)
 #  password_digest :string(255)
 #  remember_token  :string(255)
+#  admin           :boolean         default(FALSE)
 #  created_at      :datetime        not null
 #  updated_at      :datetime        not null
-#  admin           :boolean         default(FALSE)
 #
 
 class User < ActiveRecord::Base
@@ -26,10 +27,11 @@ class User < ActiveRecord::Base
   validates :password, presence: true, length: { minimum: 6 }
   validates :password_confirmation, presence: true
 
-  has_many :games, foreign_key: "host_id"
+  has_many :hosted_games, foreign_key: "host_id", class_name: "Game"
   has_many :signups, through: :votes, class_name: "Game", source: :game # user.signups returns the array of games the user is signed up for
   has_many :votes                                                       # user.votes returns the array of votes the player has cast
-  has_many :posts, dependent: :destroy
+  has_many :posts, foreign_key: "owner_id", dependent: :destroy
+  has_many :topics, foreign_key: "owner_id"
 
   private
   

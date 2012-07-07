@@ -1,14 +1,12 @@
 <div class="post">
-  <div class="post_owner">
+  <div class="post_header">
     <table>
       <tr>
-        <td><h3><%= post.user.name %> &nbsp; <%= post.created_at.strftime("%H:%M %b %d %Y") %></h3></td>
+        <td class="post_owner"><%= post.owner.name %> &nbsp; <%= post.created_at.strftime("%H:%M %b %d %Y") %></td>
       </tr>
-        
     </table>
-    
   </div>
-  <div class="content">
+  <div class="post_content">
     <%= post.content.bbcode_to_html.html_safe %>
   </div>
 </div>

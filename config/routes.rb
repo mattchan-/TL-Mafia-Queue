@@ -10,8 +10,11 @@ TLMafiaQueue::Application.routes.draw do
       post 'reply'
       get 'quote'
       post 'quote'
-      resources :posts, only: [:new, :create, :destroy]
     end
+  end
+
+  resources :topics do
+    resources :posts
   end
   
   resources :votes, only: [:create, :destroy]

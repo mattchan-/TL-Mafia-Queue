@@ -1,0 +1,7 @@
+<% provide(:title, @topic.title) %>
+
+<% if @posts.any? %>
+  <div class="posts_container">
+    <%= render @posts %>
+  </div>
+<% end %>

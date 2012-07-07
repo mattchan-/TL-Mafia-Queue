@@ -11,44 +11,43 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120701062617) do
-
-  create_table "categories", :force => true do |t|
-    t.string   "name"
-    t.string   "tag"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "categories", ["name"], :name => "index_categories_on_name"
+ActiveRecord::Schema.define(:version => 20120707004018) do
 
   create_table "games", :force => true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "maximum_players"
+    t.integer  "player_cap"
     t.integer  "host_id"
-    t.integer  "category_id"
-    t.integer  "status_id",       :default => 1
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.integer  "topic_id"
+    t.integer  "status_id",   :default => 1
+    t.boolean  "mini"
+    t.boolean  "normal"
+    t.boolean  "invite"
+    t.boolean  "newbie"
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
   end
 
-  add_index "games", ["category_id"], :name => "index_games_on_category_id"
   add_index "games", ["host_id"], :name => "index_games_on_host_id"
-  add_index "games", ["maximum_players"], :name => "index_games_on_maximum_players"
+  add_index "games", ["invite"], :name => "index_games_on_invite"
+  add_index "games", ["mini"], :name => "index_games_on_mini"
+  add_index "games", ["newbie"], :name => "index_games_on_newbie"
+  add_index "games", ["normal"], :name => "index_games_on_normal"
+  add_index "games", ["player_cap"], :name => "index_games_on_player_cap"
   add_index "games", ["status_id"], :name => "index_games_on_status_id"
   add_index "games", ["title"], :name => "index_games_on_title", :unique => true
+  add_index "games", ["topic_id"], :name => "index_games_on_topic_id"
 
   create_table "posts", :force => true do |t|
     t.string   "content"
-    t.integer  "user_id"
-    t.integer  "game_id"
+    t.integer  "owner_id"
+    t.integer  "topic_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "posts", ["game_id", "user_id", "created_at"], :name => "index_posts_on_game_id_and_user_id_and_created_at"
-  add_index "posts", ["user_id", "created_at"], :name => "index_posts_on_user_id_and_created_at"
+  add_index "posts", ["topic_id", "created_at"], :name => "index_posts_on_topic_id_and_created_at"
+  add_index "posts", ["topic_id", "owner_id", "created_at"], :name => "index_posts_on_topic_id_and_owner_id_and_created_at"
 
   create_table "statuses", :force => true do |t|
     t.string   "name"
@@ -57,6 +56,15 @@ ActiveRecord::Schema.define(:version => 20120701062617) do
   end
 
   add_index "statuses", ["name"], :name => "index_statuses_on_name"
+
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "owner_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "topics", ["updated_at"], :name => "index_topics_on_updated_at"
 
   create_table "users", :force => true do |t|
     t.string   "name"
