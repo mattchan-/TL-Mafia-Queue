@@ -5,14 +5,15 @@ class GamesController < ApplicationController
 
   ##### constructor #####
 
- def new
-   @game = Game.new
- end
+  def new
+    @game = Game.new
+  end
 
   def create
-    @game = current_user.games.build(params[:game])
+    @game = current_user.hosted_games.build(params[:game])
 
     if @game.save
+      set_mini_status
       flash[:success] = "Game Created"
       redirect_to current_user
     else
@@ -24,8 +25,6 @@ class GamesController < ApplicationController
 
   def show
     @game = Game.find(params[:id])
-    @posts = @game.posts.paginate(page: params[:page], order: 'created_at ASC')
-    @post = current_user.posts.build if signed_in?
     store_location
 
     respond_to do |format|
@@ -37,9 +36,11 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
+
     if @game.update_attributes(params[:game])
+      set_mini_status
       flash[:success] = "Game Updated"
-      redirect_to game_path(@game)
+      redirect_to topic_path(@game.topic)
     else
       render 'edit'
     end
@@ -47,18 +48,6 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
-  end
-
-  def reply
-    @game = Game.find(params[:id])
-    @post = current_user.posts.build(params[:post])
-    @post.game_id = @game.id
-    @game.touch
-    
-    if @post.save
-      flash[:success] = "Reply Successful"
-      redirect_to game_path(@game)
-    end
   end
 
   def quote
@@ -76,33 +65,30 @@ class GamesController < ApplicationController
 
   def run
     @game = Game.find(params[:id])
-    case @game.status_id
-    when 1
-      @game.update_attributes(maximum_players: @game.players.count, status_id: 3)
-      flash[:success] = @game.title + " is now running!"
-      redirect_to game_path
-    when 2
-      @game.update_attributes(status_id: 3)
-      flash[:success] = @game.title + " is now running!"
-      redirect_to game_path
-    when 3
-      flash[:error] = @game.title + " is already running"
-      redirect_to game_path(@game)
-    when 4
-      flash[:error] = @game.title + " has already completed"
-      redirect_to game_path(@game)
+    case @game.status
+    when 'Signups Open'
+      @game.update_attributes(player_cap: @game.players.count, status: 'Running')
+      flash[:success] = @game.topic.title + " is now running!"
+      redirect_to topic_path(@game.topic)
+    when 'Pending'
+      @game.update_attributes(status: 'Running')
+      flash[:success] = @game.topic.title + " is now running!"
+      redirect_to topic_path(@game.topic)
+    else
+      flash[:error] = @game.topic.title + " cannot be run."
+      redirect_to topic_path(@game.topic)
     end
   end
 
   def finish
     @game = Game.find(params[:id])
-    if @game.status_id == 4
-      flash[:error] = @game.title " has already completed"
-      redirect_back_or(root_path)
+    if @game.status == 'Completed'
+      flash[:error] = @game.topic.title " has already completed"
+      redirect_back_or root_path
     else
-      @game.update_attributes(status_id: 4)
-      flash[:success] = @game.title + " is now over!"
-      redirect_to game_path
+      @game.update_attributes(status: 'Completed')
+      flash[:success] = @game.topic.title + " is now over!"
+      redirect_to topic_path
     end
   end
 

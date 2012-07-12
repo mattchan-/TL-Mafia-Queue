@@ -14,28 +14,23 @@
 ActiveRecord::Schema.define(:version => 20120707004018) do
 
   create_table "games", :force => true do |t|
-    t.string   "title"
-    t.text     "description"
     t.integer  "player_cap"
     t.integer  "host_id"
     t.integer  "topic_id"
-    t.integer  "status_id",   :default => 1
     t.boolean  "mini"
-    t.boolean  "normal"
     t.boolean  "invite"
-    t.boolean  "newbie"
-    t.datetime "created_at",                 :null => false
-    t.datetime "updated_at",                 :null => false
+    t.string   "category"
+    t.string   "status",     :default => "Signups Open"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
+  add_index "games", ["category"], :name => "index_games_on_category"
   add_index "games", ["host_id"], :name => "index_games_on_host_id"
   add_index "games", ["invite"], :name => "index_games_on_invite"
   add_index "games", ["mini"], :name => "index_games_on_mini"
-  add_index "games", ["newbie"], :name => "index_games_on_newbie"
-  add_index "games", ["normal"], :name => "index_games_on_normal"
   add_index "games", ["player_cap"], :name => "index_games_on_player_cap"
-  add_index "games", ["status_id"], :name => "index_games_on_status_id"
-  add_index "games", ["title"], :name => "index_games_on_title", :unique => true
+  add_index "games", ["status"], :name => "index_games_on_status"
   add_index "games", ["topic_id"], :name => "index_games_on_topic_id"
 
   create_table "posts", :force => true do |t|
@@ -48,14 +43,6 @@ ActiveRecord::Schema.define(:version => 20120707004018) do
 
   add_index "posts", ["topic_id", "created_at"], :name => "index_posts_on_topic_id_and_created_at"
   add_index "posts", ["topic_id", "owner_id", "created_at"], :name => "index_posts_on_topic_id_and_owner_id_and_created_at"
-
-  create_table "statuses", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "statuses", ["name"], :name => "index_statuses_on_name"
 
   create_table "topics", :force => true do |t|
     t.string   "title"

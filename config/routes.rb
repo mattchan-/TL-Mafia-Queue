@@ -7,14 +7,16 @@ TLMafiaQueue::Application.routes.draw do
     member do
       post 'run'
       post 'finish'
-      post 'reply'
-      get 'quote'
-      post 'quote'
     end
   end
 
   resources :topics do
     resources :posts
+    member do
+      get 'reply'
+      post 'reply'
+      post 'update_game'
+    end
   end
   
   resources :votes, only: [:create, :destroy]

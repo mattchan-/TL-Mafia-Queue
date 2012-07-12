@@ -1,14 +1,19 @@
 <div class="post">
-  <div class="post_owner">
-    <h3><%= current_user.name %> &nbsp; <%= Time.now.strftime("%H:%M %b %d %Y") %></h3>
+  <div class="post_header">
+    <table>
+      <tr>
+        <td class="post_owner"><%= current_user.name %> &nbsp; <%= Time.now.getutc.strftime("%H:%M %b %d %Y") %></td>
+      </tr>
+    </table>
   </div>
   <div class="replyBox">
-    <%= form_for(@post, url: reply_game_path(id: @game.id)) do |f| %>
+    <%= form_for(@post, url: reply_topic_path(@topic.id)) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
       <div class="field">
         <%= f.text_area :content %>
       </div>
       <%= f.submit "Post", class: "btn btn-primary" %>
+      <%= f.submit "Preview", name: "preview", class: "btn btn-primary" %>
     <% end %>
   </div>
 </div>

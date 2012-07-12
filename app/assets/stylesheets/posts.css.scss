@@ -4,9 +4,16 @@
 
 /* Topic#show */
 
+div.posts_container {
+  border: 1px solid black;
+  background-color: #d9dde0;
+  width: 780px;
+  margin: auto;
+}
+
 div.post {
   border: 1px solid black;
-  margin: 10px 0px;
+  margin: 10px 5px;
   div.post_header {
     background-color: #06C;
     border-bottom: 1px solid black;
@@ -29,19 +36,17 @@ div.post {
       }
     }
   }
-  div.post_content {
-    padding: 5px 10px;
-    background-color: #d9dde0;
-  }
-  div.replyBox {
-    padding: 5px;
-    background-color: #d9dde0;
-    form {
-      margin: 0 0px;
-    }
-  }
 }
 
-div.posts_container {
-  
+div.post_content {
+  padding: 5px 10px;
+  background-color: #d9dde0;
+}
+
+div.replyBox {
+  padding: 5px;
+  background-color: #d9dde0;
+  textarea {
+    border-radius: 0px;
+  }
 }

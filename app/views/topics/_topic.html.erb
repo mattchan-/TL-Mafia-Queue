@@ -1,0 +1,8 @@
+<tr class=<%= topic.game.nil? ? 'discussion' : topic.game.status %> >
+  <td>&nbsp; <%= topic.game.nil? ? '[D]' : topic.game.category_tag %></td>
+  <td><%= link_to topic.title, topic_path(id: topic.id) %></td>
+  <td><%= topic.owner.name %></td>
+  <td><%= topic.game.nil? ? '' : topic.game.players.count.to_s + '/' + topic.game.player_cap.to_s + ' ' + topic.game.status %></td>
+  <td><%= topic.posts.count - 1 %></td>
+  <td><%= topic.updated_at.strftime("%H:%M %b %d %Y") %></td>
+</tr>

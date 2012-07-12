@@ -8,11 +8,10 @@
 #  player_cap  :integer
 #  host_id     :integer
 #  topic_id    :integer
-#  status_id   :integer         default(1)
 #  mini        :boolean
-#  normal      :boolean
 #  invite      :boolean
-#  newbie      :boolean
+#  category    :string(255)
+#  status      :string(255)     default("Signups Open")
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #

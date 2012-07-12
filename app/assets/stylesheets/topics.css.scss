@@ -2,3 +2,100 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.topic_title {
+  border-bottom: 1px solid black;
+  font-size: 2.2em;
+  font-weight: bold;
+  color: #FFF;
+  background-color: #06C;
+  text-align: center;
+  letter-spacing: -1px;
+  line-height: 2.2em;
+  padding: 1px;
+}
+
+div#topic_container {
+  table tr {
+    height: 30px;
+  }
+  width: 780px;
+  margin: auto;
+}
+
+div#new_game {
+  
+}
+
+div.preview {
+  border: 1px solid black;
+  padding: 5px 10px;
+  background-color: #d9dde0;
+}
+
+tr.discussion {
+  background-color: #b3bfd1;
+  color: #000;
+  a {
+    color: #000;
+  }
+}
+
+tr.Signups {
+  background-color: #0065C6;
+  color: #FFF;
+  a {
+    color: #FFF;
+  }
+}
+tr.Pending {
+  background-color: #FACB47;
+  color: #000;
+  a {
+    color: #000;
+  }
+}
+tr.Running {
+  background-color: #74AB00;
+  color: #000;
+  a {
+    color: #000;
+  }
+}
+tr.Completed {
+  background-color: #DDD;
+  color: #000;
+  a {
+    color: #000;
+  }
+}
+
+div#edit_game_form {
+  width: 40%;
+}
+
+
+div.menu {
+  margin-bottom: 10px;
+  width: 100%;
+  hr {
+    margin: 10px 0px;
+    border: 0;
+    border-top: 1px solid #EEE;
+  }
+  td {
+    padding-right: 20px;
+  }
+  td .current {
+    padding-right: 20px;
+    font-weight: bold;
+    text-decoration: underline;
+    background-repeat: no-repeat;
+    background-position: right center;
+  }
+  td .ASC {
+    background-image: url('/assets/up_arrow.gif');
+  }
+  td .DESC {
+    background-image: url('/assets/down_arrow.gif');
+  }
+}

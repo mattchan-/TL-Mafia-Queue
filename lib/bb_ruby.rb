@@ -114,8 +114,8 @@ module BBRuby
       'See ol or ul',
       :listitem],
     'List Item (alternative)' => [
-      /\[\*(:[^\[]+)?\]([^(\[|\<)]+)/mi,
-      '<li>\2</li>',
+      /\[\*(:[^\[]+)?\]/mi,
+      '<li>\2',
       'List item (alternative)',
       '[*]list item',
       :listitem],

@@ -1,0 +1,10 @@
+<h1>TL Mafia</h1>
+<hr>
+<table>
+  <tr>
+    <td><%= link_to 'Create New Topic', new_topic_path, class: "btn btn-primary" if signed_in? %></td>
+    <td><h3>Sort By:</h3></td>
+    <td class="sortable"><%= sortable 'status', 'Status' %></td>
+    <td class="sortable"><%= sortable 'updated_at', 'Recently Updated' %></td>
+  </tr>
+</table>

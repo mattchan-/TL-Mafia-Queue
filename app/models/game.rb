@@ -8,29 +8,42 @@
 #  player_cap  :integer
 #  host_id     :integer
 #  topic_id    :integer
-#  status_id   :integer         default(1)
 #  mini        :boolean
-#  normal      :boolean
 #  invite      :boolean
-#  newbie      :boolean
+#  category    :string(255)
+#  status      :string(255)     default("Signups Open")
 #  created_at  :datetime        not null
 #  updated_at  :datetime        not null
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :title, :description, :player_cap, :topic_id, :status_id, :mini, :normal, :invite, :newbie
+  attr_accessible :player_cap, :topic_id, :mini, :invite, :category, :status
 
-  validates :title, presence: true, length: { maximum: 50 },
-                   uniqueness: { case_sensitive: false }
-  validates :description, presence: true
   validates :player_cap, presence: true, numericality: { only_integer: true }
   validates :host_id, presence: true
-  validates :topic_id, presence: true
-  validates :status_id, presence: true
+  validates :topic_id, uniqueness: true
+  validates :category, inclusion: %w[Normal Themed Newbie]
+  validates :status, inclusion: ['Signups Open', 'Pending', 'Running', 'Completed']
 
   belongs_to :host, class_name: "User"
   belongs_to :topic
-  belongs_to :status
   has_many :votes
   has_many :players, through: :votes, class_name: "User", source: :user
+
+  def category_tag
+    tag = ""
+    tag += '[M]' if self.mini?
+
+    case self.category
+    when 'Normal'
+      tag += '[N]'
+    when 'Themed'
+      tag += '[T]'
+    when 'Newbie'
+      tag += '[W]'
+    end
+
+    tag += '[I]' if self.invite?
+    return tag
+  end
 end

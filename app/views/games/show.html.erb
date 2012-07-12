@@ -6,22 +6,5 @@
   <%= render 'host_buttons' %>
 <% end %>
 
-<%= will_paginate @posts %>
 <%= render 'original_post' %>
 
-<!-- Game Comments -->
-
-<% if @posts.any? %>
-  <div class="posts_container">
-    <%= render @posts %>
-  </div>
-  <%= will_paginate @posts %>
-<% end %>
-
-<!-- Reply Form -->
-
-<% if signed_in? %>
-  <%= render 'posts/new' %>
-<% end %>
-
-<%= javascript_include_tag "games" %>

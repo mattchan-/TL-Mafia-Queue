@@ -1,7 +1,59 @@
 <% provide(:title, @topic.title) %>
 
-<% if @posts.any? %>
-  <div class="posts_container">
-    <%= render @posts %>
+<div class="posts_container">
+  <div class="topic_title">
+    <%= @topic.title %>
   </div>
-<% end %>
+  <% if !@game.nil? %>
+    <% if @game.host == current_user %>
+      <div class="hostButtons">
+        <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if @game.status == "Signups Open" || @game.status == "Pending"  %>
+        <%= link_to 'Game Over', finish_game_path, method: :post, class: "btn btn-primary" if @game.status == "Running" %>
+        
+        <div id="edit_game_form">
+          <%= form_for(@game) do |game| %>
+            <%= game.label :player_cap %>
+            <%= game.number_field :player_cap %>
+
+            <%= game.label :category %>
+            &nbsp; <%= game.radio_button :category, 'Normal', checked: true %> Normal Game<br/>
+            &nbsp; <%= game.radio_button :category, 'Themed' %> Themed Game<br/>
+            &nbsp; <%= game.radio_button :category, 'Newbie' %> Newbie Game<br/><br/>
+            Invite Game: <%= game.check_box :invite %> (If checked, players are not put on the signup list until approved).<br/>
+            <%= game.submit "Edit Game", class: "btn btn-primary" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+
+    <div class="post">
+      <div class="post_content">
+        <h3>Player List:</h3>
+        <br/>
+        <% @game.players.each_with_index do |user, index| %>
+          <%= index += 1 %>. <%= user.name %><br/>
+        <% end %>
+        <%= (@game.players.count + 1).to_s + '.' if @game.status == "Signups Open" %>
+        <br/><br/>
+        <%= @game.player_cap %> of <%= @game.player_cap %> players remaining.
+
+        <% if @game.status == "Signups Open" && @game.host != current_user %>
+          <hr>
+          <% if current_user.signups.exists?(@game) %>
+            <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-small btn-primary" %>
+          <% else %>
+            <%= link_to '/in', votes_path(game_id: @game.id, user_id: current_user), method: :post, class: "btn btn-small btn-primary" %>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+  
+  <%= will_paginate @posts %>
+  <%= render @posts %>
+  <%= will_paginate @posts %>
+
+  <% if signed_in? %>
+    <%= render 'posts/new' %>
+  <% end %>
+</div>
