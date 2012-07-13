@@ -3,7 +3,7 @@
     <%= render 'topics/menu' %>
   </div>
   <% if @topics.total_pages > 1 %>
-    <hr><%= will_paginate @topics %>
+    <%= will_paginate @topics %><hr>
   <% end %>
 
   <div class="topics">

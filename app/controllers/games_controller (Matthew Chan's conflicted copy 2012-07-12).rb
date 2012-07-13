@@ -13,6 +13,7 @@ class GamesController < ApplicationController
     @game = current_user.hosted_games.build(params[:game])
 
     if @game.save
+      set_mini_status
       flash[:success] = "Game Created"
       redirect_to current_user
     else
@@ -37,9 +38,12 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
 
     if @game.update_attributes(params[:game])
+      set_mini_status
       flash[:success] = "Game Updated"
+      redirect_to topic_path(@game.topic)
+    else
+      render 'edit'
     end
-    redirect_to topic_path(@game.topic)
   end
 
   def edit
@@ -61,15 +65,13 @@ class GamesController < ApplicationController
 
   def run
     @game = Game.find(params[:id])
-    @game.topic.touch
-
     case @game.status
     when 'Signups Open'
-      @game.update_attributes(player_cap: @game.players.count, status_id: 3)
+      @game.update_attributes(player_cap: @game.players.count, status: 'Running')
       flash[:success] = @game.topic.title + " is now running!"
       redirect_to topic_path(@game.topic)
     when 'Pending'
-      @game.update_attributes(status_id: 3)
+      @game.update_attributes(status: 'Running')
       flash[:success] = @game.topic.title + " is now running!"
       redirect_to topic_path(@game.topic)
     else
@@ -80,13 +82,11 @@ class GamesController < ApplicationController
 
   def finish
     @game = Game.find(params[:id])
-    @game.topic.touch
-
     if @game.status == 'Completed'
       flash[:error] = @game.topic.title " has already completed"
       redirect_back_or root_path
     else
-      @game.update_attributes(status_id: 4)
+      @game.update_attributes(status: 'Completed')
       flash[:success] = @game.topic.title + " is now over!"
       redirect_to topic_path
     end

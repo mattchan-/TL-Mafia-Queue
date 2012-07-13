@@ -20,13 +20,17 @@ ActiveRecord::Schema.define(:version => 20120707004018) do
     t.boolean  "mini"
     t.boolean  "invite"
     t.string   "category"
-    t.integer  "status_id",  :default => 1
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "status",     :default => "Signups Open"
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
   end
 
+  add_index "games", ["category"], :name => "index_games_on_category"
   add_index "games", ["host_id"], :name => "index_games_on_host_id"
-  add_index "games", ["status_id"], :name => "index_games_on_status_id"
+  add_index "games", ["invite"], :name => "index_games_on_invite"
+  add_index "games", ["mini"], :name => "index_games_on_mini"
+  add_index "games", ["player_cap"], :name => "index_games_on_player_cap"
+  add_index "games", ["status"], :name => "index_games_on_status"
   add_index "games", ["topic_id"], :name => "index_games_on_topic_id"
 
   create_table "posts", :force => true do |t|

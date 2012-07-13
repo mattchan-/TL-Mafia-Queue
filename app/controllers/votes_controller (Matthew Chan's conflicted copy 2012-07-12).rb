@@ -8,6 +8,9 @@ class VotesController < ApplicationController
     @vote.user_id = params[:user_id]
     @vote.save
 
+    @vote.game.touch
+    @vote.game.topic.touch
+    close_signups(@vote.game)
     redirect_back_or root_path
   end
 

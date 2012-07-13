@@ -14,14 +14,4 @@ class Vote < ActiveRecord::Base
   validates :user_id, uniqueness: { scope: :game_id }
   belongs_to :user
   belongs_to :game # votes are deleted when a game is deleted.
-  after_save :close_signups
-
-  def close_signups
-    self.game.touch
-    self.game.topic.touch
-    if self.game.players.count >= self.game.player_cap
-      self.game.update_attributes(status_id: 2)
-    end
-  end
-
 end

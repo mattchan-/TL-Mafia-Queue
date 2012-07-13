@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def home
-    @topics = Topic.sort_for_index(sort_column, sort_direction).paginate(page: params[:page])
+    @topics = Topic.order(sort_column + " " + sort_direction).paginate(page: params[:page])
     store_location
   end
 
@@ -16,5 +16,4 @@ class StaticPagesController < ApplicationController
     def sort_direction
       %w[ASC DESC].include?(params[:direction]) ? params[:direction] : "DESC"
     end
-
 end

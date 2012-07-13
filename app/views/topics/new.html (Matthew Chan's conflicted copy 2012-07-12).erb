@@ -17,9 +17,8 @@
 <div class="row">
   <div class="span6 offset3">
     <%= form_for(@topic) do |f| %>
-      <% error_objects = [@topic, @post] %>
-      <% error_objects << @game unless @game.nil? %>
-      <%= render "shared/multiple_form_error_messages", objects: error_objects %> 
+      <%= render 'shared/error_messages', object: f.object %>
+
       <%= f.label :title %>
       <%= f.text_field :title %>
 
@@ -31,7 +30,7 @@
       <%= link_to 'New Game', '#', id: "new_game" %>
       <br/>
       <div id="new_game_form">
-        <div id="game_form">
+        <div>
           <%= fields_for(:game) do |game| %>
             <%= game.label :player_cap %>
             <%= game.number_field :player_cap %>
@@ -53,25 +52,18 @@
   </div>
 </div>
 
-<div id="holder_form" style="display:none;">
-  
-</div>
 <script>
-function add_game() {
-  $('#new_game_form').append($("#game_form"));
-} 
-function remove_game() {
-  $('#holder_form').append($("#game_form"));
-}
 $(document).ready(function() {
-  <% if @game.nil? || (@game.new_record? && !@game.errors.any?) %> remove_game(); <% end %>
+  $('#new_game_form').hide();
 });
 $('a#new_game').live("click", function() {
-  if($("#new_game_form").children().length == 0) {
-    add_game();
-  } else {
-    remove_game();
+  if ($('a#new_game').attr('new_game') == 'false') {
+   $('a#new_game').attr('new_game', 'true');
   }
+  else {
+   $('a#new_game').attr('new_game', 'false');
+  }
+  $('div#new_game_form').toggle();
   return false;
 });
 </script>

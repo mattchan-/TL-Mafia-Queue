@@ -1,0 +1,15 @@
+<% sum = objects.map { |obj| obj.errors.count }.inject(:+) %>
+<% if sum != 0 %>
+	<div id="error_explanation">
+		<div class="alert alert-error">
+		  The form contains <%= pluralize(sum, "error") %>.
+		</div>
+	  <ul>
+	 	<% objects.each do |object| %>
+		 	<% object.errors.full_messages.each do |msg| %>
+		    <li>* <%= msg %></li>
+		  <% end %>
+	  <% end %>
+	  </ul>
+	</div>
+<% end %>

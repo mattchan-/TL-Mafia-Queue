@@ -14,16 +14,20 @@ class TopicsController < ApplicationController
   end
 
   def create
-    @topic = Topic.new(params[:topic])
-    @post = @topic.posts.build(params[:post])
-    @game = @topic.build_game(params[:game]) if params[:game]
+    @topic = current_user.topics.build(params[:topic])
+    @post = current_user.posts.build(params[:post])
+    @game = current_user.hosted_games.build(params[:game])
 
-    @topic.owner = @post.owner = current_user
-    @game.host = current_user if params[:game]
-    
     if params[:preview] || !@topic.save
       render 'new'
     else
+      @post.topic = @topic
+      @post.save
+      if !@game.player_cap.nil?
+        set_mini_status
+        @game.topic = @topic
+        @game.save
+      end
       flash[:success] = "Topic created!"
       redirect_to topic_path(@topic)
     end
