@@ -10,7 +10,9 @@ class GamesController < ApplicationController
   end
 
   def create
-    @game = current_user.hosted_games.build(params[:game])
+    @topic = Topic.find(params[:id])
+    @game = @topic.hosted_games.build(params[:game])
+    @game.owner = current_user
 
     if @game.save
       flash[:success] = "Game Created"

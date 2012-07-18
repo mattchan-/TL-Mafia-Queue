@@ -2,6 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+div.gameInfo {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  padding: 5px 0px;
+  margin: 5px 5px;
+}
+
 div.topic_title {
   border-bottom: 1px solid black;
   font-size: 2.2em;
@@ -18,8 +25,6 @@ div#topic_container {
   table tr {
     height: 30px;
   }
-  width: 780px;
-  margin: auto;
 }
 
 div#new_game {

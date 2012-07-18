@@ -4,12 +4,18 @@
   <div class="topic_title">
     <%= @topic.title %>
   </div>
-  <% if !@game.nil? %>
-    <% if @game.host == current_user %>
-      <div class="hostButtons">
+  
+  <% if @game.nil? && @topic.owner == current_user %>
+    <div class="gameInfo">
+      <%= link_to 'Add Game', edit_topic_path(@topic), class: "btn btn-primary" %>
+    </div>
+  <% end %>
+  <% if !@game.nil? && @game.host == current_user %>
+    <div class="gameInfo">
+      <% if @game.host == current_user %>
         <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if @game.status == "Signups Open" || @game.status == "Pending"  %>
         <%= link_to 'Game Over', finish_game_path, method: :post, class: "btn btn-primary" if @game.status == "Running" %>
-        
+
         <div id="edit_game_form">
           <%= form_for(@game) do |game| %>
             <%= game.label :player_cap %>
@@ -23,8 +29,8 @@
             <%= game.submit "Edit Game", class: "btn btn-primary" %>
           <% end %>
         </div>
-      </div>
-    <% end %>
+      <% end %>
+    </div>
 
     <div class="post">
       <div class="post_content">

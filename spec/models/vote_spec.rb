@@ -5,6 +5,7 @@
 #  id         :integer         not null, primary key
 #  game_id    :integer
 #  user_id    :integer
+#  approved   :boolean         default(FALSE)
 #  created_at :datetime        not null
 #  updated_at :datetime        not null
 #

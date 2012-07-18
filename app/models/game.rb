@@ -41,8 +41,6 @@ class Game < ActiveRecord::Base
     when 'Newbie'
       tag += '[W]'
     end
-
-    tag += '[I]' if self.invite?
     return tag
   end
 

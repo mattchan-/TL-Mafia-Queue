@@ -3,6 +3,7 @@ class CreateVotes < ActiveRecord::Migration
     create_table :votes do |t|
       t.integer :game_id
       t.integer :user_id
+      t.boolean :approved, default: false
 
       t.timestamps
     end

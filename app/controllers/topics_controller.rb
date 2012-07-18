@@ -33,12 +33,32 @@ class TopicsController < ApplicationController
     @topic = Topic.find(params[:id])
     @posts = @topic.posts.paginate(page: params[:page], order: 'created_at ASC')
     @post = current_user.posts.build if signed_in?
-    @game = @topic.game
+    @game = @topic.game 
     store_location
 
     respond_to do |format|
       format.html # show.html.erb
     end
+  end
+
+  def edit
+    @topic = Topic.find(params[:id])
+    @game = @topic.build_game
+
+    respond_to do |format|
+      format.html # edit.html.erb
+    end
+  end
+
+  def update
+    @topic = Topic.find(params[:id])
+    @game = @topic.build_game(params[:game])
+    @game.host = @topic.owner
+
+    if @game.save
+      flash[:success] = "Game Added"
+    end
+    redirect_to topic_path(@topic)
   end
 
   def reply
