@@ -1,37 +1,7 @@
 class GamesController < ApplicationController
   include GamesHelper
-  before_filter :signed_in_user,  except: [:show]
-  before_filter :host_privileges, only: [:edit, :update, :run, :finish, :destroy]
-
-  ##### constructor #####
-
-  def new
-    @game = Game.new
-  end
-
-  def create
-    @topic = Topic.find(params[:id])
-    @game = @topic.hosted_games.build(params[:game])
-    @game.owner = current_user
-
-    if @game.save
-      flash[:success] = "Game Created"
-      redirect_to current_user
-    else
-      render 'new'
-    end
-  end
-
-  ##### display #####
-
-  def show
-    @game = Game.find(params[:id])
-    store_location
-
-    respond_to do |format|
-      format.html # show.html.erb
-    end
-  end
+  before_filter :signed_in_user
+  before_filter :host_privileges
 
   ##### modifiers #####
 
@@ -46,19 +16,6 @@ class GamesController < ApplicationController
 
   def edit
     @game = Game.find(params[:id])
-  end
-
-  def quote
-    @game = Game.find(params[:game_id])
-    @post = current_user.posts.build(params[:post])
-    @quoted_post = Post.find(params[:post_id])
-    @post.game_id = @game.id
-    @game.touch
-
-    if @post.save
-      flash[:success] = "Reply Successful"
-      redirect_to game_path(@game)
-    end
   end
 
   def run
@@ -92,19 +49,5 @@ class GamesController < ApplicationController
       flash[:success] = @game.topic.title + " is now over!"
       redirect_to topic_path
     end
-  end
-
-  ##### destructor #####
-
-  def destroy
-    @game = Game.find(params[:id])
-
-    @game.votes.each do |vote|
-      vote.destroy
-    end
-
-    @game.destroy
-
-    redirect_to current_user
   end
 end

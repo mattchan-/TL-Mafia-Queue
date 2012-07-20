@@ -3,28 +3,36 @@ TLMafiaQueue::Application.routes.draw do
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
 
-  resources :games, except: [:index] do
+  resources :games, only: [:edit, :update] do
     member do
       post 'run'
       post 'finish'
     end
   end
 
-  resources :topics do
-    resources :posts
+  resources :topics, path_names: { edit: 'add_game' } do
     member do
       get 'reply'
       post 'reply'
-      post 'update_game'
+    end
+    resources :posts, only: [:edit, :update] do
+      member do
+        get 'quote'
+      end
     end
   end
   
-  resources :votes, only: [:create, :destroy]
+  resources :votes, only: [:create, :destroy] do
+    member do
+      post 'approve'
+    end
+  end
 
   root to: 'static_pages#home'
 
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
+  match '/mygames', to: 'sessions#my_games'
   match '/signout', to: 'sessions#destroy', via: :delete
   
   match '/help',    to: 'static_pages#help'

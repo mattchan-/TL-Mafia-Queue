@@ -3,6 +3,10 @@
     <table>
       <tr>
         <td class="post_owner"><%= post.owner.name %> &nbsp; <%= post.created_at.strftime("%H:%M %b %d %Y") %></td>
+        <td class="post_options">
+          <%= link_to 'Quote', quote_topic_post_path(topic_id: post.topic_id, id: post), method: :get %>
+          <%= link_to 'Edit', edit_topic_post_path(topic_id: post.topic_id, id: post), method: :get if post.owner == current_user %>
+        </td>
       </tr>
     </table>
   </div>

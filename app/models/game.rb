@@ -66,4 +66,11 @@ class Game < ActiveRecord::Base
     end
   end
 
+  def approved_players
+    votes = self.votes
+    array = []
+    votes.each { |vote| array << vote.user if vote.approved? }
+    return array    
+  end
+
 end

@@ -15,7 +15,7 @@
 <% end %>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span6 offset2">
     <%= form_for(@topic) do |f| %>
       <% error_objects = [@topic, @post] %>
       <% error_objects << @game unless @game.nil? %>
@@ -28,7 +28,7 @@
         <%= post.text_area :content %>
       <% end %>
 
-      <%= link_to 'New Game', '#', id: "new_game" %>
+      <%= link_to 'Add New Game', '#', id: "new_game" %>
       <br/>
       <div id="new_game_form">
         <div id="game_form">

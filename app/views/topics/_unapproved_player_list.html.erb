@@ -1,0 +1,5 @@
+<b>Unapproved players:<br/></b>
+<% unapproved_players = @game.players - @game.approved_players %>
+<% unapproved_players.each do |user| %>
+  <%= link_to user.name, approve_vote_path(user.votes.find_by_game_id(@game)), { method: :post, remote: true } %><br/>
+<% end %>

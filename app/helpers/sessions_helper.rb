@@ -21,11 +21,6 @@ module SessionsHelper
     user == current_user
   end
 
-  def signed_up_for?
-    @game = Game.find(params[:id])
-    current_user.signups.exists?(@game.id)
-  end
-
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)

@@ -1,4 +1,4 @@
-<tr class=<%= topic.game.nil? ? 'discussion' : topic.game.status %> >
+<tr class=<%= topic.game.nil? ? 'Discussion' : topic.game.status %> >
   <td>&nbsp; <%= topic.game.nil? ? '[D]' : topic.game.category_tag %></td>
   <td><%= link_to topic.title, topic_path(id: topic.id) %></td>
   <td><%= topic.owner.name %></td>

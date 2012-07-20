@@ -15,7 +15,7 @@
 <% end %>
 
 <div class="row">
-  <div class="span6 offset3">
+  <div class="span6 offset2">
     <%= form_for(@topic) do |f| %>
       <%= render "shared/error_messages", object: f.object %> 
       <div id="new_game_form">
@@ -35,8 +35,7 @@
 
       <br/>
 
-      <%= f.submit "Post", class: "btn btn-large btn-primary" %>
-      <%= f.submit "Preview", name: 'preview', class: "btn btn-large btn-primary" %>
+      <%= f.submit "Add Game", class: "btn btn-large btn-primary" %>
     <% end %>
   </div>
 </div>

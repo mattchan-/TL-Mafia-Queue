@@ -1,15 +1,17 @@
-<% provide(:title, 'Preview message') %>
-<h1>Preview message</h1>
+<% provide(:title, 'Edit post') %>
+<h1>Edit post</h1>
 
 <hr>
 
 <div class="posts_container">
+  <% if params[:preview] %>
   <div style="padding: 5px 5px"><b>Preview:</b></div>
   <div class="post">
     <div class="post_content">
       <%= @post.content.bbcode_to_html.html_safe %>
     </div>
   </div>
+  <% end %>
   <div class="post">
     <div class="post_header">
       <table>
@@ -19,7 +21,7 @@
       </table>
     </div>
     <div class="replyBox">
-      <%= form_for(@post, url: reply_topic_path(@topic.id)) do |f| %>
+      <%= form_for(@post, url: topic_post_path(topic_id: @post.topic_id, id: @post)) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <div class="field">
           <%= f.text_area :content %>

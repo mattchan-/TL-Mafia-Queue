@@ -93,6 +93,17 @@ p {
   }
 }
 
+#signin {
+  width: 200px;
+  padding: 10px;
+  input {
+    margin-bottom: 5px;
+  }
+  form {
+    margin: 0px;
+  }
+}
+
 /* footer */
 
 footer {
@@ -214,7 +225,7 @@ input, textarea, select, .uneditable-input {
 
 .pagination {
   text-align: right;
-  margin: 10px;
+  margin: 10px 0px;
 }
 
 /* BBCode */
@@ -242,4 +253,26 @@ div.spoiler_content {
   padding: 5px;
   border: 1px solid #888;
   display:none;
+}
+
+/* clearfix */
+
+.clearfix:after {
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.clearfix { 
+  display: inline-block; /* for IE/Mac */
+}
+
+html[xmlns] .clearfix {
+  display: block;
+}
+ 
+* html .clearfix {
+  height: 1%;
 }

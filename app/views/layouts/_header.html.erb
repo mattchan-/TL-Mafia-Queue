@@ -7,8 +7,8 @@
           <li><%= link_to "Home", root_path %></li>
           <li><%= link_to "Help", help_path %></li>
           <% if signed_in? %>
-            <li><%= link_to "Users", users_path %></li>
-            <li><%= link_to "My Games", current_user %></li>
+            <li><%= link_to "Users", users_path if current_user.admin? %></li>
+            <li><%= link_to "My Games", mygames_path %></li>
             <li id="fat-menu" class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <%= current_user.name %> <b class="caret"></b>
@@ -22,7 +22,19 @@
               </ul>
             </li>
           <% else %>
-            <li><%= link_to "Sign in", signin_path %></li>
+            <li><%= link_to "Signup", signup_path %></li>
+            <li id="fat-menu" class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Sign in <b class="caret"></b>
+              </a>
+              <div class="dropdown-menu" id="signin">
+                <%= form_for(:session, url: sessions_path) do |f| %>
+                  <%= f.text_field :name, placeholder: 'Username' %>
+
+                  <%= f.password_field :password, placeholder: 'Password' %>
+                  <%= f.submit "Sign in", class: "btn btn-primary" %>
+                <% end %>
+              </ul>
           <% end %>
         </ul>
       </nav>

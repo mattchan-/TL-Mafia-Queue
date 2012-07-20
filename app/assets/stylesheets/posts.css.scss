@@ -7,8 +7,6 @@
 div.posts_container {
   border: 1px solid black;
   background-color: #d9dde0;
-  width: 780px;
-  margin: auto;
 }
 
 div.post {
@@ -17,6 +15,9 @@ div.post {
   div.post_header {
     background-color: #06C;
     border-bottom: 1px solid black;
+    table {
+      width: 100%;
+    }
     td.post_owner {
       width: 70%;
       font-size: 1.0em;
@@ -28,7 +29,7 @@ div.post {
     td.post_options {
       width: 30%;
       text-align: right;
-      font-size: 10px;
+      font-size: 11px;
       padding-right: 10px;
       a, a:hover {
         color: #FFF;

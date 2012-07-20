@@ -2,9 +2,12 @@
 <hr>
 <table>
   <tr>
-    <td><%= link_to 'Create New Topic', new_topic_path, class: "btn btn-primary" if signed_in? %></td>
+    <% if signed_in? %>
+      <td><%= link_to 'Create New Topic', new_topic_path, class: "btn btn-primary" %></td>
+    <% end %>
     <td><h3>Sort By:</h3></td>
-    <td class="sortable"><%= sortable 'status', 'Status' %></td>
-    <td class="sortable"><%= sortable 'updated_at', 'Recently Updated' %></td>
+    <td class="sortable" id="status"><%= sortable 'status', 'Status' %></td>
+    <td class="sortable" id="updated_at"><%= sortable 'updated_at', 'Recently Updated' %></td>
   </tr>
 </table>
+<hr>

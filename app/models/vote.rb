@@ -11,11 +11,12 @@
 #
 
 class Vote < ActiveRecord::Base
-  attr_accessible :user_id, :game_id
+  attr_accessible :user_id, :game_id, :approved
   validates :user_id, uniqueness: { scope: :game_id }
   belongs_to :user
   belongs_to :game # votes are deleted when a game is deleted.
-  #after_save :close_signups
+  after_save :close_signups
+  before_save :auto_set_approval
 
   def close_signups
     self.game.touch
@@ -25,8 +26,7 @@ class Vote < ActiveRecord::Base
     end
   end
 
-  def approve
-    self.update_attributes(approved: true)
+  def auto_set_approval
+    self.approved = true unless self.game.invite?
   end
-
 end

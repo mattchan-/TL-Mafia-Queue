@@ -248,10 +248,10 @@ module BBRuby
         text.gsub!( '>', '>' )
       end
 
-      text.gsub!(/\[quote\]/, '<div class="quote"><hr>\2')
-      text.gsub!(/\[\/quote\]/, '<hr></div>')
+      formatted = text.gsub(/\[quote\]/, '<div class="quote"><hr>\2')
+      formatted.gsub!(/\[\/quote\]/, '<hr></div>')
 
-      BBRuby.to_html(text, tags_alternative_definition, false, method, tags)
+      BBRuby.to_html(formatted, tags_alternative_definition, false, method, tags)
     end
     
     # The same as BBRuby.to_html except the output is passed through simple_format first

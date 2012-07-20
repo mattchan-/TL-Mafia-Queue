@@ -1,0 +1,16 @@
+<% provide(:title, 'Reply!') %>
+<h1>Reply!</h1>
+
+<div class="post">
+  <div class="replyBox">
+    <%= form_for(@post, url: reply_topic_path(id: @post.topic)) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+      <div class="field">
+        <%= f.text_area :content, value: '[quote][b]On ' + @quoted_post.created_at.strftime("%b %d %Y %H:%M") + ' ' + @quoted_post.owner.name + ' wrote:[/b]
+' + @quoted_post.content + '[/quote]' %>
+      </div>
+      <%= f.submit "Post", class: "btn btn-primary" %>
+      <%= f.submit "Preview", name: 'preview', class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

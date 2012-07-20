@@ -11,6 +11,19 @@ class VotesController < ApplicationController
     redirect_back_or root_path
   end
 
+  def approve
+    @vote = Vote.find(params[:id])
+    @vote.toggle!(:approved)
+    
+    @game = @vote.game
+    @game.touch
+    @game.topic.touch
+
+    respond_to do |format|
+      format.js {} # show.js.erb
+    end
+  end
+
   def destroy
     @vote = Vote.find(params[:id])
     @vote.destroy

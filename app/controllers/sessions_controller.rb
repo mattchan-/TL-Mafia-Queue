@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  WillPaginate.per_page = 1 # remove when done testing
 
   def new
   end
@@ -12,6 +13,13 @@ class SessionsController < ApplicationController
       flash.now[:error] = 'Invalid name/password combination'
       render 'new'
     end
+  end
+
+  def my_games
+    @my_topics = current_user.topics.paginate(page: params[:my_topics_page])
+    @signups = []
+    current_user.signups.each { |game| @signups << game.topic }
+    @signups = @signups.paginate(page: params[:signups_page])
   end
   
   def destroy

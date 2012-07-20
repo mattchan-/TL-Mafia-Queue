@@ -2,14 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-div.gameInfo {
-  border-top: 1px solid #999;
-  border-bottom: 1px solid #999;
-  padding: 5px 0px;
-  margin: 5px 5px;
-}
-
-div.topic_title {
+div#topic_title {
   border-bottom: 1px solid black;
   font-size: 2.2em;
   font-weight: bold;
@@ -21,14 +14,35 @@ div.topic_title {
   padding: 1px;
 }
 
-div#topic_container {
-  table tr {
-    height: 30px;
+div#host_buttons {
+  margin: 5px 5px;
+}
+
+div#gameInfo {
+  border-top: 1px solid #999;
+  border-bottom: 1px solid #999;
+  padding: 5px 0px;
+  margin: 5px 5px;
+  div#host_options {
+    width: 100%;
+    div#edit_game_form {
+      float: left;
+      width: 40%;
+      padding-right: 5%;
+      border-right: 1px solid #999;
+    }
+    div#unapproved_player_list {
+      float: right;
+      width: 50%;
+      padding-left: 5%;
+    }
   }
 }
 
-div#new_game {
-  
+div#player_list {
+  border: 1px solid black;
+  margin: 10px 5px;
+  padding: 5px 10px;
 }
 
 div.preview {
@@ -37,62 +51,27 @@ div.preview {
   background-color: #d9dde0;
 }
 
-tr.discussion {
-  background-color: #b3bfd1;
-  color: #000;
-  a {
-    color: #000;
-  }
-}
+/* Topic Index */
 
-tr.Signups {
-  background-color: #0065C6;
-  color: #FFF;
-  a {
-    color: #FFF;
-  }
-}
-tr.Pending {
-  background-color: #FACB47;
-  color: #000;
-  a {
-    color: #000;
-  }
-}
-tr.Running {
-  background-color: #74AB00;
-  color: #000;
-  a {
-    color: #000;
-  }
-}
-tr.Completed {
-  background-color: #DDD;
-  color: #000;
-  a {
-    color: #000;
-  }
-}
-
-div#edit_game_form {
-  width: 40%;
-}
-
-
-div.menu {
-  margin-bottom: 10px;
-  width: 100%;
+div#topic_container {
   hr {
     margin: 10px 0px;
     border: 0;
     border-top: 1px solid #EEE;
   }
+  tr {
+    height: 30px;
+  }
+}
+
+div.menu {
+  margin-bottom: 10px;
+  width: 100%;
   td {
     padding-right: 20px;
   }
   td .current {
     padding-right: 20px;
-    font-weight: bold;
     text-decoration: underline;
     background-repeat: no-repeat;
     background-position: right center;
@@ -102,5 +81,45 @@ div.menu {
   }
   td .DESC {
     background-image: url('/assets/down_arrow.gif');
+  }
+  td#status {
+    width: 60px;
+  }
+  td#updated_at {
+    width: 140px;
+  }
+}
+
+div.topics {
+  color: #000;
+  a {
+    color: #000;
+  }
+  table {
+    width: 100%;
+  }
+  tr#topic_table_header {
+    font-weight: bold;
+    font-size: 1.2em;
+    letter-spacing: -1px;
+  }
+  tr.Discussion {
+    background-color: #b3bfd1;
+  }
+  tr.Signups {
+    background-color: #0065C6;
+    color: #FFF;
+    a {
+      color: #FFF;
+    }
+  }
+  tr.Pending {
+    background-color: #FACB47;
+  }
+  tr.Running {
+    background-color: #74AB00;
+  }
+  tr.Completed {
+    background-color: #DDD;
   }
 }

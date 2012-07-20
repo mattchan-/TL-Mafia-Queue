@@ -1,0 +1,42 @@
+<% provide(:title, 'My games') %>
+
+<div id="topic_container">
+  <h1>My Games</h1>
+  <hr>
+
+  <% if @my_topics.total_pages > 1 %>
+    <%= will_paginate @my_topics, param_name: 'my_topics_page' %><hr>
+  <% end %>
+  <h3>Hosting:</h3>
+  <div class="topics">
+    <table>
+      <tr id="topic_table_header">
+        <td width="10%" height="35">Category</td>
+        <td width="35%">Topic</td>
+        <td width="15%">Topic Starter</td>
+        <td width="18%">Signups</td>
+        <td width="7%">Replies</td>
+        <td width="15%">Last Update</td>
+      </tr>
+      <%= render @my_topics %>
+    </table>
+  </div>
+  <hr>
+  <% if @signups.total_pages > 1 %>
+    <%= will_paginate @signups, param_name: 'signups_page' %><hr>
+  <% end %>
+  <h3>Playing:</h3>
+  <div class="topics">
+    <table>
+      <tr id="topic_table_header">
+        <td width="10%" height="35">Category</td>
+        <td width="35%">Topic</td>
+        <td width="15%">Topic Starter</td>
+        <td width="18%">Signups</td>
+        <td width="7%">Replies</td>
+        <td width="15%">Last Update</td>
+      </tr>
+      <%= render @signups %>
+    </table>
+  </div>
+</div>
