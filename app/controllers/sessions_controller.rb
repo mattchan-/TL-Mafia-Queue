@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  WillPaginate.per_page = 1 # remove when done testing
+  WillPaginate.per_page = 20 # remove when done testing
 
   def new
   end
