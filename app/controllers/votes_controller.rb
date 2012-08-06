@@ -8,6 +8,7 @@ class VotesController < ApplicationController
     @vote.user_id = params[:user_id]
     @vote.save
 
+    flash[:success] = "Your signup for " + @vote.game.topic.title + " has been submitted"
     redirect_back_or root_path
   end
 
@@ -26,10 +27,12 @@ class VotesController < ApplicationController
 
   def destroy
     @vote = Vote.find(params[:id])
-    @vote.destroy
+    flash[:success] = "You are no longer signed up for " + @vote.game.topic.title
 
     @vote.game.touch
     @vote.game.topic.touch
+    @vote.destroy
+
     redirect_back_or root_path
   end
 end

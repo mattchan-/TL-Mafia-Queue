@@ -1,0 +1,14 @@
+<div class="menu">
+  <h1>All Games</h1>
+  <hr>
+  <table>
+    <tr>
+      <td><%= link_to 'Create New Game', new_game_path, class: "btn btn-primary" if signed_in? %></td>
+      <td><h3>Sort By:</h3></td>
+      <td><%= link_to 'Status', '#', class: "sort_by" %></td>
+      <td><%= link_to 'Popular', '#', class: "sort_by" %></td>
+      <td><%= link_to 'Category', '#', class: "sort_by" %></td>
+      <td><%= link_to 'Recently Updated', '#', class: "sort_by" %></td>
+    </tr>
+  </table>
+</div>

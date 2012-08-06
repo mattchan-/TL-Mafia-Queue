@@ -1,4 +1,7 @@
 <h3>Player List:</h3>
+<% if current_user == @game.host %>
+  <i class="notes">Click player name to remove from game.</i>
+<% end %>
 <br/>
 <% @game.approved_players.each_with_index do |user, index| %>
   <%= index += 1 %>.
@@ -7,6 +10,9 @@
 <%= (@game.approved_players.count + 1).to_s + '.' if @game.status == "Signups Open" %>
 <br/><br/>
 <%= @game.player_cap %> of <%= @game.player_cap %> players remaining.
+<% if current_user != @game.host %>
+<br/><i class="notes">Note: If your name does not appear on the signup list, then your signup has not yet been approved by the host.</i>
+<% end %>
 
 <% if @game.status == "Signups Open" && @game.host != current_user %>
   <hr>

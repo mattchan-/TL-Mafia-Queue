@@ -1,0 +1,6 @@
+<div class="hostButtons">
+  <%= link_to 'Delete Game', game_path, method: :delete, confirm: "Are you sure?", class: "btn btn-primary" if @game.status == "Signups Open" %>
+  <%= link_to 'Edit Game', edit_game_path, class: "btn btn-primary" %>
+  <%= link_to 'Run Game', run_game_path, method: :post, class: "btn btn-primary" if @game.status == "Signups Open" || @game.status == "Pending"  %>
+  <%= link_to 'Game Over', finish_game_path, method: :post, class: "btn btn-primary" if @game.status == "Running" %>
+</div>

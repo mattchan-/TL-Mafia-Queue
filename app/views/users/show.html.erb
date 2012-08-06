@@ -1,0 +1,8 @@
+<% provide(:title, @user.name + '\'s Games') %>
+<div class="menu">
+  <%= render 'games/my_index_menu' %>
+</div>
+
+<div class="game_index_container">
+  <%= render 'games/my_games_table' %>
+</div>

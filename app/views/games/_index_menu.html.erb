@@ -1,0 +1,10 @@
+<h1>All Games</h1>
+<hr>
+<table>
+  <tr>
+    <td><%= link_to 'Create New Game', new_game_path, class: "btn btn-primary" if signed_in? %></td>
+    <td><h3>Sort By:</h3></td>
+    <td class="sortable"><%= sortable 'status_id', 'Status' %></td>
+    <td class="sortable"><%= sortable 'updated_at', 'Recently Updated' %></td>
+  </tr>
+</table>

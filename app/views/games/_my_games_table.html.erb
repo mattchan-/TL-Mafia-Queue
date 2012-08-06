@@ -1,0 +1,11 @@
+<table>
+  <%= render 'games/index_header' %>
+
+  <tr class="breakmarker"><td colspan="7"><b><hr>Hosting:</b></td></tr>
+  <% hosting = @user.hosted_games.order(sort_column + " " + sort_direction).paginate(page: params[:page]) %>
+  <%= render hosting %>
+
+  <tr class="breakmarker"><td colspan="7"><b><hr>Playing:</b></td></tr>
+  <% playing = @user.signups.order(sort_column + " " + sort_direction).paginate(page: params[:page]) %>
+  <%= render playing %>
+</table>
