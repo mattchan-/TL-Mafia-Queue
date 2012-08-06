@@ -14,7 +14,7 @@
 <br/><i class="notes">Note: If your name does not appear on the signup list, then your signup has not yet been approved by the host.</i>
 <% end %>
 
-<% if @game.status == "Signups Open" && @game.host != current_user %>
+<% if signed_in? && @game.status == "Signups Open" && @game.host != current_user %>
   <hr>
   <% if current_user.signups.exists?(@game) %>
     <%= link_to '/out', vote_path(id: @game.votes.find_by_user_id(current_user).id), method: :delete, class: "btn btn-small btn-primary" %>
