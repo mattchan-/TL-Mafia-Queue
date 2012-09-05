@@ -14,15 +14,6 @@ TLMafiaQueue::Application.configure do
   # Compress JavaScripts and CSS
   config.assets.compress = true
   
-  ActionMailer::Base.smtp_settings = {
-    :address        => 'smtp.sendgrid.net',
-    :port           => '587',
-    :authentication => :plain,
-    :user_name      => ENV['matt.chan'],
-    :password       => ENV['jubJubs.'],
-    :domain         => 'heroku.com'
-  }
-  ActionMailer::Base.delivery_method = :smtp
   config.action_mailer.default_url_options = { :host => "http://tlmafiaqueue.herokuapp.com/" }
 
   # Don't fallback to assets pipeline if a precompiled asset is missed
