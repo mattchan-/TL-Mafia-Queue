@@ -10,15 +10,21 @@
   <h3>Hosting:</h3>
   <div class="topics">
     <table>
-      <tr id="topic_table_header">
-        <td width="10%" height="35">Category</td>
-        <td width="35%">Topic</td>
-        <td width="15%">Topic Starter</td>
-        <td width="18%">Signups</td>
-        <td width="7%">Replies</td>
-        <td width="15%">Last Update</td>
-      </tr>
-      <%= render @my_topics %>
+      <% if @my_topics.count == 0 %>
+        <tr>
+          <td><i>None</i></td>
+        </tr>
+      <% else %>
+        <tr id="topic_table_header">
+          <td width="10%" height="35">Category</td>
+          <td width="35%">Topic</td>
+          <td width="15%">Topic Starter</td>
+          <td width="18%">Signups</td>
+          <td width="7%">Replies</td>
+          <td width="15%">Last Update</td>
+        </tr>
+        <%= render @my_topics %>
+      <% end %>
     </table>
   </div>
   <hr>
@@ -28,15 +34,21 @@
   <h3>Playing:</h3>
   <div class="topics">
     <table>
-      <tr id="topic_table_header">
-        <td width="10%" height="35">Category</td>
-        <td width="35%">Topic</td>
-        <td width="15%">Topic Starter</td>
-        <td width="18%">Signups</td>
-        <td width="7%">Replies</td>
-        <td width="15%">Last Update</td>
-      </tr>
-      <%= render @signups %>
+      <% if @signups.count == 0 %>
+        <tr>
+          <td><i>None</i></td>
+        </tr>
+      <% else %>
+        <tr id="topic_table_header">
+          <td width="10%" height="35">Category</td>
+          <td width="35%">Topic</td>
+          <td width="15%">Topic Starter</td>
+          <td width="18%">Signups</td>
+          <td width="7%">Replies</td>
+          <td width="15%">Last Update</td>
+        </tr>
+        <%= render @signups %>
+      <% end %>
     </table>
   </div>
 </div>
