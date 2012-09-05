@@ -2,6 +2,7 @@ TLMafiaQueue::Application.routes.draw do
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :password_resets
 
   resources :games, only: [:edit, :update] do
     member do

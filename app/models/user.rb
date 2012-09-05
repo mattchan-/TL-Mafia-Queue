@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation
   has_secure_password
 
-  before_save :create_remember_token
+  before_save { generate_token(:remember_token) }
 
   validates :name, presence: true, length: { maximum: 50 },
                    uniqueness: { case_sensitive: false }
@@ -33,11 +33,18 @@ class User < ActiveRecord::Base
   has_many :posts, foreign_key: "owner_id", dependent: :destroy
   has_many :topics, foreign_key: "owner_id"
 
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!(validate: false)
+    UserMailer.password_reset(self).deliver
+  end
+
   private
-  
-    def create_remember_token
+
+    def generate_token(column)
       begin
-        self.remember_token = SecureRandom.urlsafe_base64
-      end while User.exists?(remember_token => self.remember_token)
+        self[column] = SecureRandom.urlsafe_base64
+      end while User.exists?(column => self[column])
     end
 end

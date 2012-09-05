@@ -40,10 +40,8 @@ class UsersController < ApplicationController
   def update
     if @user.update_attributes(params[:user])
       flash[:success] = "Profile updated"
-      if !current_user.admin?
-        sign_in @user
-      end
-      redirect_to @user
+      sign_in @user
+      redirect_to mygames_path
     else
       render 'edit'
     end
@@ -63,7 +61,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to root_path, notice: "You do not have permission to view this page" unless current_user?(@user) || current_user.admin?
+      redirect_to root_path, notice: "You do not have permission to view this page" unless ( signed_in? && (current_user?(@user) || current_user.admin?) )
     end
 
     def admin_user
