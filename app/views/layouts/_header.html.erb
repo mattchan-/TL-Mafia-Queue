@@ -32,6 +32,8 @@
                   <%= f.text_field :name, placeholder: 'Username' %>
 
                   <%= f.password_field :password, placeholder: 'Password' %>
+                  <%= check_box_tag :remember_me, class: 'checkbox' %>
+                  <%= label_tag :remember_me, nil, class: 'checkbox' %><br/>
                   <%= f.submit "Sign in", class: "btn btn-primary" %>
                 <% end %>
               </ul>

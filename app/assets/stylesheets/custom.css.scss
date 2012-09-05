@@ -181,6 +181,11 @@ input, textarea, select, .uneditable-input {
   @include box_sizing;
 }
 
+label.checkbox {
+  display: inline;
+  padding-left: 0px;
+}
+
 #error_explanation {
   color: #f00;
   ul {

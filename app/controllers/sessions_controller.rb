@@ -5,9 +5,13 @@ class SessionsController < ApplicationController
   end
   
   def create
-    user = User.find(:first, :conditions => [ "lower(name) = ?", params[:session][:name].downcase])
+    user = User.find(:first, :conditions => [ "lower(name) = ?", params[:session][:name].downcase ])
     if user && user.authenticate(params[:session][:password])
-      sign_in user
+      if params[:remember_me]
+        sign_in_permanent user
+      else
+        sign_in user
+      end
       redirect_back_or user
     else
       flash.now[:error] = 'Invalid name/password combination'
