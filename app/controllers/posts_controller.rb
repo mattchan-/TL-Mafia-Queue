@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     if params[:preview] || !@post.save
       render 'edit'
     else
-      flash[:success] = "Topic created!"
+      flash[:success] = "Post updated!"
       redirect_to topic_path(@post.topic)
     end
   end
