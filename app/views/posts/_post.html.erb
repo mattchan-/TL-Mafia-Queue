@@ -12,5 +12,11 @@
   </div>
   <div class="post_content">
     <%= post.content.bbcode_to_html.html_safe %>
+    <% if post.updated_at != post.created_at %>
+      <br/>
+      <div class="edit_time">
+        <i><%= "Last edit: " + post.updated_at.strftime("%H:%M %b %d %Y") %></i>
+      </div>
+    <% end %>
   </div>
 </div>

@@ -42,6 +42,10 @@ div.post {
 div.post_content {
   padding: 5px 10px;
   background-color: #d9dde0;
+  div.edit_time {
+    text-align: right;
+    font-size: 0.8em;
+  }
 }
 
 div.replyBox {
