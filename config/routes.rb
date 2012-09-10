@@ -1,8 +1,14 @@
 TLMafiaQueue::Application.routes.draw do
 
-  resources :users
   resources :sessions, only: [:new, :create, :destroy]
   resources :password_resets
+
+  resources :users do
+    member do
+      post 'approve_account'
+      post 'toggle_host_privileges'
+    end
+  end
 
   resources :games, only: [:edit, :update] do
     member do
@@ -11,7 +17,7 @@ TLMafiaQueue::Application.routes.draw do
     end
   end
 
-  resources :topics, path_names: { edit: 'add_game' } do
+  resources :topics do
     member do
       get 'reply'
       post 'reply'
@@ -34,6 +40,8 @@ TLMafiaQueue::Application.routes.draw do
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/mygames', to: 'sessions#my_games'
+  match '/admin', to: 'sessions#admin'
+  match '/pending', to: 'sessions#pending'
   match '/signout', to: 'sessions#destroy', via: :delete
   
   match '/help',    to: 'static_pages#help'

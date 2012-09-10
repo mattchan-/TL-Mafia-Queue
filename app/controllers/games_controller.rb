@@ -1,7 +1,7 @@
 class GamesController < ApplicationController
   include GamesHelper
   before_filter :signed_in_user
-  before_filter :host_privileges
+  before_filter :is_owner?
 
   ##### modifiers #####
 
@@ -11,7 +11,7 @@ class GamesController < ApplicationController
     if @game.update_attributes(params[:game])
       flash[:success] = "Game Updated"
     end
-    redirect_to topic_path(@game.topic)
+    redirect_to topic_path @game.topic
   end
 
   def edit
@@ -50,4 +50,11 @@ class GamesController < ApplicationController
       redirect_to topic_path
     end
   end
+
+  private
+
+    def is_owner?
+      @game = Game.find(params[:id])
+      redirect_back_or root_path unless current_user == game.host
+    end
 end

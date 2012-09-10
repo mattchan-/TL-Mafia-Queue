@@ -1,0 +1,54 @@
+<% provide(:title, 'Admin') %>
+<h1>Users</h1>
+
+<%= link_to 'Accounts awaiting approval', pending_path %>
+
+<% if @users.total_pages > 1 %>
+  <hr>
+  <%= will_paginate @users, param_name: 'users_page' %>
+<% end %>
+
+<ul class="admin" id="users">
+  <% @users.each do |user| %>
+    <li>
+      <%= user.name %>
+      <% if !user.approved? %>
+        | <%= link_to 'Approve account', approve_account_user_path(user), method: :post %>
+      <% end %>
+      <% if !user.admin? %>
+        <% if user.host_privileges? %>
+          | <%= link_to 'Revoke hosting privileges', toggle_host_privileges_user_path(user), method: :post %>
+        <% else %>
+          | <%= link_to 'Add hosting privileges', toggle_host_privileges_user_path(user), method: :post %>
+        <% end %>
+        <% if current_user.admin? %>
+          | <%= link_to 'Delete', user, method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @users.total_pages > 1 %>
+  <%= will_paginate @users, param_name: 'users_page' %>
+<% end %>
+
+<h1>Topics</h1>
+
+<% if @topics.total_pages > 1 %>
+  <hr>
+  <%= will_paginate @topics, param_name: 'topics_page' %>
+<% end %>
+
+<ul class="admin" id="topics">
+  <% @topics.each do |topic| %>
+    <li>
+      <%= link_to topic.title, topic_path(topic.id) %>
+      | <%= link_to 'Delete', topic, method: :delete, data: { confirm: "Are you sure?" } %>
+    </li>
+  <% end %>
+</ul>
+
+<% if @topics.total_pages > 1 %>
+  <%= will_paginate @topics, param_name: 'topics_page' %>
+<% end %>

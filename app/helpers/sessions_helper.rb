@@ -26,6 +26,17 @@ module SessionsHelper
     user == current_user
   end
 
+  def admin_user
+    redirect_to root_path, notice: "You do not have permission to access this page." unless current_user.admin?
+  end
+
+  def host_privileges?
+    unless current_user.host_privileges?
+      flash[:error] = "You must be an approved host to start a new topic!"
+      redirect_back_or root_path
+    end
+  end
+
   def redirect_back_or(default)
     redirect_to(session[:return_to] || default)
     session.delete(:return_to)

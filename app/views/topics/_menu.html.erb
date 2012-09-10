@@ -2,7 +2,7 @@
 <hr>
 <table>
   <tr>
-    <% if signed_in? %>
+    <% if signed_in? && current_user.host_privileges? %>
       <td><%= link_to 'Create New Topic', new_topic_path, class: "btn btn-primary" %></td>
     <% end %>
     <td><h3>Sort By:</h3></td>

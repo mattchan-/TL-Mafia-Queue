@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  before_filter :signed_in_user
+
   def edit
     @post = Post.find(params[:id])
   end

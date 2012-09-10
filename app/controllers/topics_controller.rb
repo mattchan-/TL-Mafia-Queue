@@ -2,6 +2,8 @@ class TopicsController < ApplicationController
   include GamesHelper
   WillPaginate.per_page = 20
   before_filter :signed_in_user,  except: [:show]
+  before_filter :host_privileges?, only: [:new, :create]
+  before_filter :admin_user, only: [:destroy]
 
   def new
     @topic = Topic.new
@@ -41,26 +43,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  def edit
-    @topic = Topic.find(params[:id])
-    @game = @topic.build_game
-
-    respond_to do |format|
-      format.html # edit.html.erb
-    end
-  end
-
-  def update
-    @topic = Topic.find(params[:id])
-    @game = @topic.build_game(params[:game])
-    @game.host = @topic.owner
-
-    if @game.save
-      flash[:success] = "Game Added"
-    end
-    redirect_to topic_path(@topic)
-  end
-
   def reply
     @topic = Topic.find(params[:id])
     @post = current_user.posts.build(params[:post])
@@ -73,5 +55,11 @@ class TopicsController < ApplicationController
       flash[:success] = "Your reply was posted!"
       redirect_to topic_path(@topic)
     end
+  end
+
+  def destroy
+    Topic.find(params[:id]).destroy
+    flash[:success] = "Topic destroyed."
+    redirect_to admin_path
   end
 end

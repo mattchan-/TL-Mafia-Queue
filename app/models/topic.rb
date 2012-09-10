@@ -14,8 +14,8 @@ class Topic < ActiveRecord::Base
 
   validates :title, presence: true, length: { maximum: 50 }
   belongs_to :owner, class_name: "User"
-  has_one :game
-  has_many :posts
+  has_one :game, dependent: :destroy
+  has_many :posts, dependent: :destroy
   
 
   def self.sort_for_index(sort, direction)
@@ -37,6 +37,6 @@ class Topic < ActiveRecord::Base
     where("not exists (select 1 from games where games.topic_id = topics.id)")
   end
 	
-  accepts_nested_attributes_for :posts 
-  accepts_nested_attributes_for :game#, reject_if: lambda { |a| a[:player_cap].blank? }
+  accepts_nested_attributes_for :posts
+  accepts_nested_attributes_for :game
 end

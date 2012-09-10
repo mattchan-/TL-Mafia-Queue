@@ -1,6 +1,7 @@
 class VotesController < ApplicationController
   include GamesHelper
-  before_filter :signed_in_user, only: [:create, :destroy]
+  before_filter :signed_in_user
+  before_filter :is_owner?, only: [:approve]
 
   def create
     @vote = Vote.new
@@ -35,4 +36,10 @@ class VotesController < ApplicationController
 
     redirect_back_or root_path
   end
+
+  private
+
+    def is_owner?
+      redirect_to root_path, notice: "You do not have permission to submit this request" unless Vote.find(params[:id]).game.host == current_user
+    end
 end

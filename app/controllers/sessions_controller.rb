@@ -1,12 +1,17 @@
 class SessionsController < ApplicationController
   WillPaginate.per_page = 20 # remove when done testing
+  before_filter :signed_in_user, except: [:new, :create]
+  before_filter :admin_user, only: [:admin, :pending]
 
   def new
   end
   
   def create
     user = User.find(:first, :conditions => [ "lower(name) = ?", params[:session][:name].downcase ])
-    if user && user.authenticate(params[:session][:password])
+    if user && !user.approved?
+      flash[:notice] = "Your account has not yet been approved by the administrator"
+      redirect_to root_path
+    elsif user && user.approved? && user.authenticate(params[:session][:password])
       if params[:remember_me]
         sign_in_permanent user
       else
@@ -24,6 +29,17 @@ class SessionsController < ApplicationController
     @signups = []
     current_user.signups.each { |game| @signups << game.topic }
     @signups = @signups.paginate(page: params[:signups_page])
+  end
+
+  def admin
+    @users = User.paginate(page: params[:users_page])
+    @topics = Topic.paginate(page: params[:topics_page])
+    store_location
+  end
+
+  def pending
+    @users = User.find_all_by_approved false
+    store_location
   end
   
   def destroy

@@ -3,32 +3,36 @@
 
 <hr>
 
-<div class="posts_container">
-  <% if params[:preview] %>
-  <div style="padding: 5px 5px"><b>Preview:</b></div>
-  <div class="post">
-    <div class="post_content">
-      <%= @post.content.bbcode_to_html.html_safe %>
+<% if @post.owner != current_user %>
+  Do not attempt to edit other users' posts
+<% else %>
+  <div class="posts_container">
+    <% if params[:preview] %>
+    <div style="padding: 5px 5px"><b>Preview:</b></div>
+    <div class="post">
+      <div class="post_content">
+        <%= @post.content.bbcode_to_html.html_safe %>
+      </div>
+    </div>
+    <% end %>
+    <div class="post">
+      <div class="post_header">
+        <table>
+          <tr>
+            <td class="post_owner"><%= current_user.name %> &nbsp; <%= Time.now.getutc.strftime("%H:%M %b %d %Y") %></td>
+          </tr>
+        </table>
+      </div>
+      <div class="replyBox">
+        <%= form_for(@post, url: topic_post_path(topic_id: @post.topic_id, id: @post)) do |f| %>
+        <%= render 'shared/error_messages', object: f.object %>
+          <div class="field">
+            <%= f.text_area :content %>
+          </div>
+          <%= f.submit "Post", class: "btn btn-primary" %>
+          <%= f.submit "Preview", name: "preview", class: "btn btn-primary" %>
+        <% end %>
+      </div>
     </div>
   </div>
-  <% end %>
-  <div class="post">
-    <div class="post_header">
-      <table>
-        <tr>
-          <td class="post_owner"><%= current_user.name %> &nbsp; <%= Time.now.getutc.strftime("%H:%M %b %d %Y") %></td>
-        </tr>
-      </table>
-    </div>
-    <div class="replyBox">
-      <%= form_for(@post, url: topic_post_path(topic_id: @post.topic_id, id: @post)) do |f| %>
-      <%= render 'shared/error_messages', object: f.object %>
-        <div class="field">
-          <%= f.text_area :content %>
-        </div>
-        <%= f.submit "Post", class: "btn btn-primary" %>
-        <%= f.submit "Preview", name: "preview", class: "btn btn-primary" %>
-      <% end %>
-    </div>
-  </div>
-</div>
+<% end %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905031725) do
+ActiveRecord::Schema.define(:version => 20120909080518) do
 
   create_table "games", :force => true do |t|
     t.integer  "player_cap"
@@ -59,6 +59,8 @@ ActiveRecord::Schema.define(:version => 20120905031725) do
     t.datetime "updated_at",                                :null => false
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.boolean  "approved",               :default => false
+    t.boolean  "host_priviliges",        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

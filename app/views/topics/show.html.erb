@@ -6,49 +6,41 @@
   </div>
   
   <% if @topic.owner == current_user %>
-    <% if @game.nil? %>
-      <div id="gameInfo">
-        <%= link_to 'Add Game', edit_topic_path(@topic), class: "btn btn-primary" %>
+    <% if @game.status != "Completed" %>
+      <div id="host_buttons">
+        <%= link_to 'Run Game', run_game_path(@game), method: :post,
+                                                      class: "btn btn-primary" if @game.status == "Signups Open" || @game.status == "Pending"  %>
+        <%= link_to 'Game Over', finish_game_path(@game), method: :post, class: "btn btn-primary" if @game.status == "Running" %>
       </div>
-    <% else %>
-      <% if @game.status != "Completed" %>
-        <div id="host_buttons">
-          <%= link_to 'Run Game', run_game_path(@game), method: :post,
-                                                        class: "btn btn-primary" if @game.status == "Signups Open" || @game.status == "Pending"  %>
-          <%= link_to 'Game Over', finish_game_path(@game), method: :post, class: "btn btn-primary" if @game.status == "Running" %>
-        </div>
-      <% end %>
-      <% if @game.status == "Signups Open" || @game.status == "Pending" %>
-        <div id="gameInfo">
-          <div class="clearfix" id="host_options">
-            <div id="edit_game_form">
-              <%= form_for(@game) do |game| %>
-                <%= game.label :player_cap %>
-                <%= game.number_field :player_cap %>
+    <% end %>
+    <% if @game.status == "Signups Open" || @game.status == "Pending" %>
+      <div id="gameInfo">
+        <div class="clearfix" id="host_options">
+          <div id="edit_game_form">
+            <%= form_for(@game) do |game| %>
+              <%= game.label :player_cap %>
+              <%= game.number_field :player_cap %>
 
-                <%= game.label :category %>
-                &nbsp; <%= game.radio_button :category, 'Normal', checked: true %> Normal Game<br/>
-                &nbsp; <%= game.radio_button :category, 'Themed' %> Themed Game<br/>
-                &nbsp; <%= game.radio_button :category, 'Newbie' %> Newbie Game<br/><br/>
-                Invite Game: <%= game.check_box :invite %> (If checked, players are not put on the signup list until approved).<br/><br/>
-                <%= game.submit "Edit Game", class: "btn btn-primary" %>
-              <% end %>
-            </div>
+              <%= game.label :category %>
+              &nbsp; <%= game.radio_button :category, 'Normal', checked: true %> Normal Game<br/>
+              &nbsp; <%= game.radio_button :category, 'Themed' %> Themed Game<br/>
+              &nbsp; <%= game.radio_button :category, 'Newbie' %> Newbie Game<br/><br/>
+              Invite Game: <%= game.check_box :invite %> (If checked, players are not put on the signup list until approved).<br/><br/>
+              <%= game.submit "Edit Game", class: "btn btn-primary" %>
+            <% end %>
+          </div>
 
-            <div id="unapproved_player_list">
-              <%= render 'topics/unapproved_player_list' %>
-            </div>
+          <div id="unapproved_player_list">
+            <%= render 'topics/unapproved_player_list' %>
           </div>
         </div>
-      <% end %>
+      </div>
     <% end %>
   <% end %>
 
-  <% if !@game.nil? %>
-    <div id="player_list">
-      <%= render 'topics/player_list' %>
-    </div>
-  <% end %>
+<div id="player_list">
+  <%= render 'topics/player_list' %>
+</div>
   
   <%= will_paginate @posts %>
   <%= render @posts %>

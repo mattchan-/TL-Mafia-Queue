@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user,  only: [:index, :edit, :update, :destroy]
-  before_filter :correct_user,    only: [:show, :edit, :update]
-  before_filter :admin_user,      only: [:destroy]
+  before_filter :signed_in_user,  except: [:new, :create]
+  before_filter :correct_user,    only: [:edit, :update]
+  before_filter :admin_user,      only: [:approve_account, :toggle_host_privileges, :destroy]
 
   helper_method :sort_column, :sort_direction
 
@@ -14,22 +14,11 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      sign_in @user
-      flash[:success] = "Welcome to the TL Mafia Queue!"
+      flash[:success] = "Your account has been created and will be activated as soon as it is approved by the administrator."
       redirect_to root_path
     else
       render 'new'
     end
-  end
-
-  ##### display #####
-
-  def show
-    @user = User.find(params[:id])
-  end
-
-  def index
-    @users = User.paginate(page: params[:page])
   end
 
   ##### modifiers #####
@@ -47,12 +36,26 @@ class UsersController < ApplicationController
     end
   end
 
+  def approve_account
+    @user = User.find(params[:id])
+    @user.toggle!(:approved)
+    redirect_back_or admin_path
+  end
+
+  def toggle_host_privileges
+    @user = User.find(params[:id])
+    if !@user.admin?
+      @user.toggle!(:host_privileges)
+    end
+    redirect_back_or admin_path
+  end
+
   ##### destructor #####
 
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
-    redirect_to users_path
+    redirect_to admin_path
   end
 
   ##### helpers #####
@@ -61,11 +64,7 @@ class UsersController < ApplicationController
 
     def correct_user
       @user = User.find(params[:id])
-      redirect_to root_path, notice: "You do not have permission to view this page" unless ( signed_in? && (current_user?(@user) || current_user.admin?) )
-    end
-
-    def admin_user
-      redirect_to(root_path) unless current_user.admin?
+      redirect_to root_path, notice: "You do not have permission to view this page" unless current_user? @user
     end
 
     def sort_column
