@@ -10,15 +10,10 @@ TLMafiaQueue::Application.routes.draw do
     end
   end
 
-  resources :games, only: [:edit, :update] do
+  resources :games do
     member do
       post 'run'
       post 'finish'
-    end
-  end
-
-  resources :topics do
-    member do
       get 'reply'
       post 'reply'
     end

@@ -3,7 +3,7 @@
 
 <div class="post">
   <div class="replyBox">
-    <%= form_for(@post, url: reply_topic_path(id: @post.topic)) do |f| %>
+    <%= form_for(@post, url: reply_game_path(id: @post.game)) do |f| %>
     <%= render 'shared/error_messages', object: f.object %>
       <div class="field">
         <%= f.text_area :content, value: '[quote][b]On ' + @quoted_post.created_at.strftime("%b %d %Y %H:%M") + ' ' + @quoted_post.owner.name + ' wrote:[/b]

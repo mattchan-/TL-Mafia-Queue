@@ -1,29 +1,29 @@
 <% provide(:title, 'My games') %>
 
-<div id="topic_container">
+<div id="game_container">
   <h1>My Games</h1>
   <hr>
 
-  <% if @my_topics.total_pages > 1 %>
-    <%= will_paginate @my_topics, param_name: 'my_topics_page' %><hr>
+  <% if @my_games.total_pages > 1 %>
+    <%= will_paginate @my_games, param_name: 'my_games_page' %><hr>
   <% end %>
   <h3>Hosting:</h3>
-  <div class="topics">
+  <div class="games">
     <table>
-      <% if @my_topics.count == 0 %>
+      <% if @my_games.count == 0 %>
         <tr>
           <td><i>None</i></td>
         </tr>
       <% else %>
-        <tr id="topic_table_header">
+        <tr id="game_table_header">
           <td width="10%" height="35">Category</td>
-          <td width="35%">Topic</td>
-          <td width="15%">Topic Starter</td>
+          <td width="35%">Game</td>
+          <td width="15%">Host</td>
           <td width="18%">Signups</td>
           <td width="7%">Replies</td>
           <td width="15%">Last Update</td>
         </tr>
-        <%= render @my_topics %>
+        <%= render @my_games %>
       <% end %>
     </table>
   </div>
@@ -32,17 +32,17 @@
     <%= will_paginate @signups, param_name: 'signups_page' %><hr>
   <% end %>
   <h3>Playing:</h3>
-  <div class="topics">
+  <div class="games">
     <table>
       <% if @signups.count == 0 %>
         <tr>
           <td><i>None</i></td>
         </tr>
       <% else %>
-        <tr id="topic_table_header">
+        <tr id="game_table_header">
           <td width="10%" height="35">Category</td>
-          <td width="35%">Topic</td>
-          <td width="15%">Topic Starter</td>
+          <td width="35%">Game</td>
+          <td width="15%">Host</td>
           <td width="18%">Signups</td>
           <td width="7%">Replies</td>
           <td width="15%">Last Update</td>

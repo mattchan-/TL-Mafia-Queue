@@ -32,7 +32,7 @@ module SessionsHelper
 
   def host_privileges?
     unless current_user.host_privileges?
-      flash[:error] = "You must be an approved host to start a new topic!"
+      flash[:error] = "You must be an approved host to create a new game!"
       redirect_back_or root_path
     end
   end

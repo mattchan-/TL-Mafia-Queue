@@ -3,9 +3,9 @@
 # Table name: games
 #
 #  id         :integer         not null, primary key
+#  title      :string(255)
 #  player_cap :integer
 #  host_id    :integer
-#  topic_id   :integer
 #  mini       :boolean
 #  invite     :boolean
 #  category   :string(255)
@@ -15,19 +15,21 @@
 #
 
 class Game < ActiveRecord::Base
-  attr_accessible :player_cap, :topic_id, :mini, :invite, :category, :status_id
+  attr_accessible :title, :player_cap, :mini, :invite, :category, :status_id
 
+  validates :title, presence: true, length: { maximum: 50 }
   validates :player_cap, presence: true, numericality: { only_integer: true }
   validates :host_id, presence: true
-  validates :topic_id, uniqueness: true
   validates :category, inclusion: %w[Normal Themed Newbie]
   validates :status_id, inclusion: (1..4)
 
   before_save :set_mini_status
   belongs_to :host, class_name: "User"
-  belongs_to :topic
   has_many :votes
   has_many :players, through: :votes, class_name: "User", source: :user
+  has_many :posts, dependent: :destroy
+
+  accepts_nested_attributes_for :posts
 
   def category_tag
     tag = ""
@@ -73,4 +75,13 @@ class Game < ActiveRecord::Base
     return array    
   end
 
+  def self.sort_for_index(sort, direction)
+    if(sort == "updated_at") 
+      return Game.order("updated_at " + direction)
+    elsif (sort == "status")
+      return Game.order("games.status_id " + direction)
+    else 
+      return Game.order("updated_at DESC")
+    end
+  end
 end

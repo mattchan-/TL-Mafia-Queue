@@ -1,7 +1,7 @@
 class VotesController < ApplicationController
   include GamesHelper
   before_filter :signed_in_user
-  before_filter :is_owner?, only: [:approve]
+  before_filter :is_host?, only: [:approve]
 
   def create
     @vote = Vote.new
@@ -9,7 +9,7 @@ class VotesController < ApplicationController
     @vote.user_id = params[:user_id]
     @vote.save
 
-    flash[:success] = "Your signup for " + @vote.game.topic.title + " has been submitted"
+    flash[:success] = "Your signup for " + @vote.game.title + " has been submitted"
     redirect_back_or root_path
   end
 
@@ -19,7 +19,6 @@ class VotesController < ApplicationController
     
     @game = @vote.game
     @game.touch
-    @game.topic.touch
 
     respond_to do |format|
       format.js {} # show.js.erb
@@ -28,10 +27,9 @@ class VotesController < ApplicationController
 
   def destroy
     @vote = Vote.find(params[:id])
-    flash[:success] = "You are no longer signed up for " + @vote.game.topic.title
+    flash[:success] = "You are no longer signed up for " + @vote.game.title
 
     @vote.game.touch
-    @vote.game.topic.touch
     @vote.destroy
 
     redirect_back_or root_path
@@ -39,7 +37,7 @@ class VotesController < ApplicationController
 
   private
 
-    def is_owner?
+    def is_host?
       redirect_to root_path, notice: "You do not have permission to submit this request" unless Vote.find(params[:id]).game.host == current_user
     end
 end

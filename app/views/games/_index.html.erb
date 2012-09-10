@@ -1,0 +1,12 @@
+<div id="game_container">
+  <div class="menu">
+    <%= render 'games/menu' %>
+  </div>
+  <% if @games.total_pages > 1 %>
+    <%= will_paginate @games %><hr>
+  <% end %>
+
+  <div class="games">
+    <%= render 'games/list' %>
+  </div>
+</div>

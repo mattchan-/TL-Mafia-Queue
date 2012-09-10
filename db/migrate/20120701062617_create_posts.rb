@@ -3,11 +3,12 @@ class CreatePosts < ActiveRecord::Migration
     create_table :posts do |t|
       t.text :content
       t.integer :owner_id
-      t.integer :topic_id
+      t.integer :game_id
 
       t.timestamps
     end
-    add_index :posts, [:topic_id, :owner_id, :created_at]
-    add_index :posts, [:topic_id, :created_at]
+    add_index :posts, :game_id
+    add_index :posts, :owner_id
+    add_index :posts, :created_at
   end
 end

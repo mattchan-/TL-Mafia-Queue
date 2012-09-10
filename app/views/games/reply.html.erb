@@ -19,7 +19,7 @@
       </table>
     </div>
     <div class="replyBox">
-      <%= form_for(@post, url: reply_topic_path(@topic.id)) do |f| %>
+      <%= form_for(@post, url: reply_game_path(@game.id)) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
         <div class="field">
           <%= f.text_area :content %>

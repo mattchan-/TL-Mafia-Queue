@@ -33,22 +33,22 @@
   <%= will_paginate @users, param_name: 'users_page' %>
 <% end %>
 
-<h1>Topics</h1>
+<h1>Games</h1>
 
-<% if @topics.total_pages > 1 %>
+<% if @games.total_pages > 1 %>
   <hr>
-  <%= will_paginate @topics, param_name: 'topics_page' %>
+  <%= will_paginate @games, param_name: 'games_page' %>
 <% end %>
 
-<ul class="admin" id="topics">
-  <% @topics.each do |topic| %>
+<ul class="admin" id="games">
+  <% @games.each do |game| %>
     <li>
-      <%= link_to topic.title, topic_path(topic.id) %>
-      | <%= link_to 'Delete', topic, method: :delete, data: { confirm: "Are you sure?" } %>
+      <%= link_to game.title, game_path(game.id) %>
+      | <%= link_to 'Delete', game, method: :delete, data: { confirm: "Are you sure?" } %>
     </li>
   <% end %>
 </ul>
 
-<% if @topics.total_pages > 1 %>
-  <%= will_paginate @topics, param_name: 'topics_page' %>
+<% if @games.total_pages > 1 %>
+  <%= will_paginate @games, param_name: 'games_page' %>
 <% end %>

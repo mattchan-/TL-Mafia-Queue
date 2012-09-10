@@ -14,9 +14,9 @@
 ActiveRecord::Schema.define(:version => 20120909080518) do
 
   create_table "games", :force => true do |t|
+    t.string   "title"
     t.integer  "player_cap"
     t.integer  "host_id"
-    t.integer  "topic_id"
     t.boolean  "mini"
     t.boolean  "invite"
     t.string   "category"
@@ -27,27 +27,19 @@ ActiveRecord::Schema.define(:version => 20120909080518) do
 
   add_index "games", ["host_id"], :name => "index_games_on_host_id"
   add_index "games", ["status_id"], :name => "index_games_on_status_id"
-  add_index "games", ["topic_id"], :name => "index_games_on_topic_id"
+  add_index "games", ["updated_at"], :name => "index_games_on_updated_at"
 
   create_table "posts", :force => true do |t|
-    t.string   "content"
+    t.text     "content"
     t.integer  "owner_id"
-    t.integer  "topic_id"
+    t.integer  "game_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
-  add_index "posts", ["topic_id", "created_at"], :name => "index_posts_on_topic_id_and_created_at"
-  add_index "posts", ["topic_id", "owner_id", "created_at"], :name => "index_posts_on_topic_id_and_owner_id_and_created_at"
-
-  create_table "topics", :force => true do |t|
-    t.string   "title"
-    t.integer  "owner_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "topics", ["updated_at"], :name => "index_topics_on_updated_at"
+  add_index "posts", ["created_at"], :name => "index_posts_on_created_at"
+  add_index "posts", ["game_id"], :name => "index_posts_on_game_id"
+  add_index "posts", ["owner_id"], :name => "index_posts_on_owner_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"
@@ -60,7 +52,7 @@ ActiveRecord::Schema.define(:version => 20120909080518) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.boolean  "approved",               :default => false
-    t.boolean  "host_priviliges",        :default => false
+    t.boolean  "host_privileges",        :default => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

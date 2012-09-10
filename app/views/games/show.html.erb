@@ -1,11 +1,11 @@
-<% provide(:title, @topic.title) %>
+<% provide(:title, @game.title) %>
 
 <div class="posts_container">
-  <div id="topic_title">
-    <%= @topic.title %>
+  <div id="game_title">
+    <%= @game.title %>
   </div>
   
-  <% if @topic.owner == current_user %>
+  <% if @game.host == current_user %>
     <% if @game.status != "Completed" %>
       <div id="host_buttons">
         <%= link_to 'Run Game', run_game_path(@game), method: :post,
@@ -14,7 +14,7 @@
       </div>
     <% end %>
     <% if @game.status == "Signups Open" || @game.status == "Pending" %>
-      <div id="gameInfo">
+      <div id="game_info">
         <div class="clearfix" id="host_options">
           <div id="edit_game_form">
             <%= form_for(@game) do |game| %>
@@ -31,7 +31,7 @@
           </div>
 
           <div id="unapproved_player_list">
-            <%= render 'topics/unapproved_player_list' %>
+            <%= render 'games/unapproved_player_list' %>
           </div>
         </div>
       </div>
@@ -39,7 +39,7 @@
   <% end %>
 
 <div id="player_list">
-  <%= render 'topics/player_list' %>
+  <%= render 'games/player_list' %>
 </div>
   
   <%= will_paginate @posts %>

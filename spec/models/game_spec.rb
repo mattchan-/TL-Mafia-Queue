@@ -3,9 +3,9 @@
 # Table name: games
 #
 #  id         :integer         not null, primary key
+#  title      :string(255)
 #  player_cap :integer
 #  host_id    :integer
-#  topic_id   :integer
 #  mini       :boolean
 #  invite     :boolean
 #  category   :string(255)

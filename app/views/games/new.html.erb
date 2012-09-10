@@ -1,5 +1,5 @@
-<% provide(:title, 'Add topic') %>
-<h1>Add Topic</h1>
+<% provide(:title, 'Add game') %>
+<h1>Add Game</h1>
 
 <hr>
 <% if params[:preview] %>
@@ -15,10 +15,8 @@
 
 <div class="row">
   <div class="span6 offset2">
-    <%= form_for(@topic) do |f| %>
-      <% error_objects = [@topic, @post] %>
-      <% error_objects << @game unless @game.nil? %>
-      <%= render "shared/multiple_form_error_messages", objects: error_objects %> 
+    <%= form_for(@game) do |f| %>
+      <%= render "shared/error_messages", object: f.object %> 
       <%= f.label :title %>
       <%= f.text_field :title %>
 

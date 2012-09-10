@@ -1,0 +1,8 @@
+<tr class=<%= game.status %> >
+  <td>&nbsp; <%= game.category_tag %></td>
+  <td><%= link_to game.title, game_path(id: game.id) %></td>
+  <td><%= game.host.name %></td>
+  <td><%= game.approved_players.count.to_s + '/' + game.player_cap.to_s + ' ' + game.status %></td>
+  <td><%= game.posts.count - 1 %></td>
+  <td><%= game.updated_at.strftime("%H:%M %b %d %Y") %></td>
+</tr>

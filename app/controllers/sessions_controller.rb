@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  WillPaginate.per_page = 20 # remove when done testing
   before_filter :signed_in_user, except: [:new, :create]
   before_filter :admin_user, only: [:admin, :pending]
 
@@ -25,15 +24,13 @@ class SessionsController < ApplicationController
   end
 
   def my_games
-    @my_topics = current_user.topics.paginate(page: params[:my_topics_page])
-    @signups = []
-    current_user.signups.each { |game| @signups << game.topic }
-    @signups = @signups.paginate(page: params[:signups_page])
+    @my_games = current_user.games.paginate(page: params[:my_games_page])
+    @signups = current_user.signups.paginate(page: params[:signups_page])
   end
 
   def admin
     @users = User.paginate(page: params[:users_page])
-    @topics = Topic.paginate(page: params[:topics_page])
+    @games = Game.paginate(page: params[:games_page])
     store_location
   end
 

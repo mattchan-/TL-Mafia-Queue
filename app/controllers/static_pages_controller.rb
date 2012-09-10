@@ -4,7 +4,7 @@ class StaticPagesController < ApplicationController
   helper_method :sort_column, :sort_direction
 
   def home
-    @topics = Topic.sort_for_index(sort_column, sort_direction).paginate(page: params[:page])
+    @games = Game.sort_for_index(sort_column, sort_direction).paginate(page: params[:page])
     store_location
   end
 
