@@ -23,8 +23,7 @@
 
               <%= game.label :category %>
               &nbsp; <%= game.radio_button :category, 'Normal', checked: true %> Normal Game<br/>
-              &nbsp; <%= game.radio_button :category, 'Themed' %> Themed Game<br/>
-              &nbsp; <%= game.radio_button :category, 'Newbie' %> Newbie Game<br/><br/>
+              &nbsp; <%= game.radio_button :category, 'Themed' %> Themed Game<br/><br/>
               Invite Game: <%= game.check_box :invite %> (If checked, players are not put on the signup list until approved).<br/><br/>
               <%= game.submit "Edit Game", class: "btn btn-primary" %>
             <% end %>
